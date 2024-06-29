@@ -6,26 +6,26 @@
     "dev": "next dev --port 3333",
     "build": "next build",
     "start": "next start --port 3333",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@sanity/image-url": "1",
-    "@sanity/vision": "3",
-    "next": "14.2.4",
-    "next-sanity": "9",
+    "@sanity/image-url": "^1",
+    "@sanity/vision": "^3",
+    "next": "^14.2.4",
+    "next-sanity": "^9",
     "react": "^18",
     "react-dom": "^18",
-    "sanity": "3",
-    "styled-components": "6"
+    "sanity": "^3",
+    "styled-components": "^6"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^14.2.4",
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.4",
     "typescript": "^5"
   }
 }
