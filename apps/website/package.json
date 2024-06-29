@@ -10,10 +10,16 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@portabletext/react": "^3.1.0",
     "@repo/ui": "workspace:^",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/preview-url-secret": "^1.6.17",
     "next": "^14.2.4",
+    "next-sanity": "^9.4.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sanity": "^3.48.1",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.4",

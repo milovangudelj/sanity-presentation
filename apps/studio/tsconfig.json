@@ -6,6 +6,16 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../website/sanity/client.ts",
+    "../website/sanity/fetch.ts",
+    "../website/sanity/image.ts",
+    "../website/sanity/queries.ts",
+    "../website/sanity/token.ts"
+  ],
   "exclude": ["node_modules"]
 }

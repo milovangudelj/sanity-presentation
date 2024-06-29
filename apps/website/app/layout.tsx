@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { draftMode } from "next/headers";
 
+import { geist, inter } from "~/styles/fonts";
 import "~/styles/globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { PreviewOverlay } from "~/components/preview-overlay";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +15,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDraftMode = draftMode().isEnabled;
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} ${geist.className} min-h-dvh overflow-x-hidden ${isDraftMode ? "bg-[#13141b]" : "bg-zinc-100"} font-sans text-black antialiased`}
+      >
+        <PreviewOverlay>{children}</PreviewOverlay>
+      </body>
     </html>
   );
 }

@@ -1,11 +1,18 @@
-import { Card } from "@repo/ui/card";
+import { type SanityDocument } from "next-sanity";
 
-export default function Home() {
+import { sanityFetch } from "~/sanity/lib/fetch";
+import { POSTS_QUERY } from "~/sanity/lib/queries";
+
+import Posts from "~/components/posts";
+
+export default async function Home() {
+  const posts = await sanityFetch<SanityDocument[]>({
+    query: POSTS_QUERY,
+  });
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <Card title="Docs" href="https://nextjs.org/docs">
-        Visit Next.js&apos; docs
-      </Card>
+    <main className="flex flex-col items-center justify-center p-24">
+      <Posts posts={posts} />
     </main>
   );
 }
