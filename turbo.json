@@ -6,6 +6,10 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!README.md"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "start": {
+      "cache": false,
+      "persistent": true
+    },
     "lint": {},
     "type-check": {},
     "dev": {
