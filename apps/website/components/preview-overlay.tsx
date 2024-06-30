@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 
-export function PreviewOverlay({ children }: { children: ReactNode }) {
-  const isDraftMode = draftMode().isEnabled;
-
+export function PreviewOverlay({
+  children,
+  isDraftMode,
+}: {
+  children: ReactNode;
+  isDraftMode: boolean;
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
