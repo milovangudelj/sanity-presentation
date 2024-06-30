@@ -1,11 +1,19 @@
-import { type ReactNode } from "react";
+"use client";
+
+import { useEffect, useState, type ReactNode } from "react";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
 
 export function PreviewOverlay({ children }: { children: ReactNode }) {
   const isDraftMode = draftMode().isEnabled;
 
-  return isDraftMode ? (
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (window === parent) setVisible(true);
+  }, []);
+
+  return isDraftMode && visible ? (
     <div className="absolute bottom-2 left-2 right-2 top-2 flex flex-col gap-2">
       <div className="flex flex-1 flex-col overflow-hidden rounded-lg bg-zinc-100">
         <div className="flex-1 overflow-y-auto">{children}</div>
