@@ -13,6 +13,14 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center justify-center p-24">
       <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
+      <Posts posts={posts} />
     </main>
   );
 }
