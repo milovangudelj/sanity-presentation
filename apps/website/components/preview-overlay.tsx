@@ -14,8 +14,8 @@ export function PreviewOverlay({
   useEffect(() => {
     if (window !== parent) return;
 
-    setVisible(true);
-    document.body.style.overflowY = "hidden";
+    setVisible(isDraftMode);
+    document.body.style.overflowY = isDraftMode ? "hidden" : "auto";
   }, []);
 
   return isDraftMode && visible ? (
