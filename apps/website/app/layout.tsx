@@ -16,14 +16,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isDraftMode = draftMode().isEnabled;
-
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden bg-zinc-100 font-sans text-black antialiased`}
       >
-        <PreviewOverlay isDraftMode={isDraftMode}>
+        <PreviewOverlay isDraftMode={draftMode().isEnabled}>
           {children}
           <VisualEditing />
         </PreviewOverlay>
