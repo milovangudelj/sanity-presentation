@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 
 import { geist, inter } from "~/styles/fonts";
 import "~/styles/globals.css";
@@ -22,7 +23,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden ${isDraftMode ? "bg-[#13141b]" : "bg-zinc-100"} font-sans text-black antialiased`}
       >
-        <PreviewOverlay isDraftMode={isDraftMode}>{children}</PreviewOverlay>
+        <PreviewOverlay isDraftMode={isDraftMode}>
+          {children}
+          <VisualEditing />
+        </PreviewOverlay>
       </body>
     </html>
   );
