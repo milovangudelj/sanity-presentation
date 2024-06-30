@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.1.0",
-    "@repo/ui": "workspace:^",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-url-secret": "^1.6.17",
     "framer-motion": "^11.2.12",
