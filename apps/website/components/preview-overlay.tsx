@@ -16,7 +16,7 @@ export function PreviewOverlay({
   }, []);
 
   return isDraftMode && visible ? (
-    <div className="absolute bottom-2 left-2 right-2 top-2 flex flex-col gap-2">
+    <div className="absolute inset-0 p-2 bg-[#13141b] flex flex-col gap-2">
       <div className="flex flex-1 flex-col overflow-hidden rounded-lg bg-zinc-100">
         <div className="flex-1 overflow-y-auto">{children}</div>
       </div>

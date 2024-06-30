@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden ${isDraftMode ? "bg-[#13141b]" : "bg-zinc-100"} font-sans text-black antialiased`}
+        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden bg-zinc-100 font-sans text-black antialiased`}
       >
         <PreviewOverlay isDraftMode={isDraftMode}>
           {children}
