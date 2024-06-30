@@ -12,7 +12,10 @@ export function PreviewOverlay({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (window === parent) setVisible(true);
+    if (window !== parent) return;
+
+    setVisible(true);
+    document.body.style.overflowY = "hidden";
   }, []);
 
   return isDraftMode && visible ? (
