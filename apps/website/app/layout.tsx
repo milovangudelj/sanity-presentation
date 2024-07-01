@@ -4,7 +4,9 @@ import { VisualEditing } from "next-sanity";
 
 import { geist, inter } from "~/styles/fonts";
 import "~/styles/globals.css";
+
 import { PreviewOverlay } from "~/components/preview-overlay";
+import { Navbar } from "~/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,9 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden bg-zinc-100 font-sans text-black antialiased`}
+        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden bg-[#F0ECE7] font-sans text-black antialiased`}
       >
         <PreviewOverlay isDraftMode={draftMode().isEnabled}>
+          <Navbar />
           {children}
           <VisualEditing />
         </PreviewOverlay>
