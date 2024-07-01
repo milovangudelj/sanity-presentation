@@ -49,7 +49,7 @@ export function PreviewOverlay({
           height: "auto",
         }}
       >
-        <div className="flex items-center pl-2.5">
+        <div className="flex items-center pl-[5px]">
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
