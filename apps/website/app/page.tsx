@@ -19,8 +19,8 @@ export default async function Home() {
             Unleash your creativity with Quill
           </h1>
           <div className="relative pb-[248px]">
-            <div className="bg-amber-950 absolute inset-0 rounded-[32px]" />
-            <div className="relative bg-[#F0ECE7] flex flex-col gap-8 pr-8 pb-8 rounded-br-[32px] w-fit">
+            <div className="bg-amber-950 absolute inset-0 rounded-3xl" />
+            <div className="relative bg-[#F0ECE7] before:absolute before:top-0 before:left-full before:bg-transparent before:w-12 before:h-12 before:rounded-full before:shadow-[-1.5rem_-1.5rem_0_0_#F0ECE7] after:absolute after:top-full after:left-0 after:bg-transparent after:w-12 after:h-12 after:rounded-full after:shadow-[-1.5rem_-1.5rem_0_0_#F0ECE7] flex flex-col gap-8 pr-8 pb-8 rounded-br-3xl w-fit">
               <p className="font-semibold text-[24px]/[1.5] inline-block max-w-[450px]">
                 Discover eco-friendly, artisanal stationery for all your
                 creative needs

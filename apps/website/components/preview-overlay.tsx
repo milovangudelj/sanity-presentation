@@ -30,7 +30,7 @@ export function PreviewOverlay({
       }}
     >
       <motion.div
-        className="flex flex-1 flex-col overflow-hidden bg-zinc-100"
+        className="flex flex-1 flex-col overflow-hidden bg-[#F0ECE7]"
         initial={{
           borderRadius: "0px",
         }}

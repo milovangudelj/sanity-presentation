@@ -30,6 +30,7 @@ async function getNavLinks() {
 
 export async function Navbar() {
   const links = await getNavLinks();
+
   return (
     <div className="p-4">
       <Container className="flex items-baseline justify-between">
