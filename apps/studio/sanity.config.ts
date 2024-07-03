@@ -7,7 +7,7 @@ import { presentationTool } from "sanity/presentation";
 
 import { apiVersion, dataset, projectId } from "~/sanity/env";
 import { schema } from "~/sanity/schema";
-import { locate } from "~/sanity/lib/locate";
+import { locations } from "~/sanity/lib/locations";
 
 export default defineConfig({
   auth: {
@@ -22,7 +22,15 @@ export default defineConfig({
   plugins: [
     structureTool(),
     presentationTool({
-      locate,
+      resolve: {
+        // mainDocuments: defineDocuments([
+        //   {
+        //     route: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/posts/:slug`,
+        //     filter: `_type == "post" && slug.current == $slug`,
+        //   },
+        // ]),
+        locations,
+      },
       previewUrl: {
         draftMode: {
           enable: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/draft`,

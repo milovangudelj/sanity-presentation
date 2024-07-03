@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
+body {
+  --container-inner-width: 1440px;
+  --container-outer-width: calc(((100vw - var(--scrollbar-width, 0px) - (var(--preview-overlay-padding, 0px) * 2)) - var(--container-inner-width, 0px)) / 2);
+
+  --color-bg: #F0ECE7
+}
+
+body[data-preview='true'] {
+  --preview-overlay-padding: 8px
+}
+
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.bg-planes {
+  background-size: 96px;
+  background-repeat: repeat;
 }

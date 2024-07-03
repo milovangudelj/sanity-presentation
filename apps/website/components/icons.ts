@@ -1,3 +1,3 @@
 "use client";
 
-export { Feather, ShoppingCart } from "@phosphor-icons/react";
+export { Feather, ShoppingCart, ArrowRight } from "@phosphor-icons/react";

@@ -6,8 +6,13 @@ export default defineType({
   type: "document",
   fields: [
     defineField({
-      name: "name",
-      title: "Name",
+      name: "firstName",
+      title: "First Name",
+      type: "string",
+    }),
+    defineField({
+      name: "lastName",
+      title: "Last Name",
       type: "string",
     }),
     defineField({
@@ -15,9 +20,14 @@ export default defineType({
       title: "Slug",
       type: "slug",
       options: {
-        source: "name",
+        source: (doc) => `${doc.firstName}-${doc.lastName}`,
         maxLength: 96,
       },
+    }),
+    defineField({
+      name: "role",
+      title: "Role",
+      type: "string",
     }),
     defineField({
       name: "image",

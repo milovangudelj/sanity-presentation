@@ -3,7 +3,7 @@ import type { Image } from "sanity";
 
 import { dataset, projectId } from "~/sanity/env";
 
-const imageBuilder = createImageUrlBuilder({
+export const imageBuilder = createImageUrlBuilder({
   projectId: projectId || "",
   dataset: dataset || "",
 });

@@ -7,6 +7,7 @@ import "~/styles/globals.css";
 
 import { PreviewOverlay } from "~/components/preview-overlay";
 import { Navbar } from "~/components/navbar";
+import { Footer } from "~/components/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden bg-[#F0ECE7] font-sans text-black antialiased`}
+        data-preview={draftMode().isEnabled ? "true" : "false"}
+        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden hide-scrollbar bg-[#F0ECE7] font-sans text-black antialiased`}
       >
         <PreviewOverlay isDraftMode={draftMode().isEnabled}>
           <Navbar />
           {children}
+          <Footer />
           <VisualEditing />
         </PreviewOverlay>
       </body>

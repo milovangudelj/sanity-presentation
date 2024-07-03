@@ -21,12 +21,12 @@ export function PreviewOverlay({
 
   return visible ? (
     <motion.div
-      className="absolute inset-0 bg-[#13141b] flex flex-col gap-2"
+      className="absolute inset-0 bg-[#13141b] flex flex-col gap-[var(--preview-overlay-padding)]"
       initial={{
         padding: "0px",
       }}
       animate={{
-        padding: "8px",
+        padding: "var(--preview-overlay-padding)",
       }}
     >
       <motion.div
@@ -38,7 +38,7 @@ export function PreviewOverlay({
           borderRadius: "8px",
         }}
       >
-        <div className="flex-1 overflow-y-auto">{children}</div>
+        <div className="flex-1 overflow-y-auto hide-scrollbar">{children}</div>
       </motion.div>
       <motion.div
         className="flex flex-none select-none overflow-hidden items-center justify-between bg-[#13141b] font-geist text-[14px]/[16px] text-white"
