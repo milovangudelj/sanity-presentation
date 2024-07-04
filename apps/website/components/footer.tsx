@@ -10,7 +10,7 @@ export async function Footer() {
         <Container className="flex flex-col gap-16">
           <div className="flex gap-[128px]">
             <div className="flex-1 max-w-[360px] flex flex-col gap-8">
-              <Link href={"/"} className="flex gap-4 items-center">
+              <Link href="/" className="flex gap-4 items-center">
                 <Feather size={48} />
                 <span className="font-medium text-[60px]/[1.1]">Quill</span>
               </Link>
@@ -24,11 +24,11 @@ export async function Footer() {
           </div>
           <div className="font-medium text-white/40 text-[12px]/[1.1]">
             &copy; {new Date().getFullYear()} Quill Inc. ・{" "}
-            <Link href={"/tos"} className="hover:text-white/70 transition">
+            <Link href="/tos" className="hover:text-white/70 transition">
               Terms of Service
             </Link>{" "}
             ・{" "}
-            <Link href={"/privacy"} className="hover:text-white/70 transition">
+            <Link href="/privacy" className="hover:text-white/70 transition">
               Privacy Policy
             </Link>
           </div>

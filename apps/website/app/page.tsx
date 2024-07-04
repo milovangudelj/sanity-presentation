@@ -1,19 +1,9 @@
-import { type SanityDocument } from "next-sanity";
-
-import { sanityFetch } from "~/sanity/lib/fetch";
-import { POSTS_QUERY } from "~/sanity/lib/queries";
-
-import Posts from "~/components/posts";
 import { Container } from "~/components/container";
 import { FeaturedProductsList } from "~/components/fetured-products";
 import { LatestArticlesList } from "~/components/latest-articles";
 import { CallToAction } from "~/components/call-to-action";
 
 export default async function Home() {
-  const posts = await sanityFetch<SanityDocument[]>({
-    query: POSTS_QUERY,
-  });
-
   return (
     <main>
       <section className="py-16 px-4">
