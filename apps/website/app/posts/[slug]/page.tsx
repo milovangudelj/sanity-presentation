@@ -1,20 +1,20 @@
 import { type QueryParams, type SanityDocument } from "next-sanity";
 import { notFound } from "next/navigation";
 
-import { POSTS_QUERY, POST_QUERY } from "~/sanity/lib/queries";
+import { POST_QUERY, POST_SLUGS_QUERY } from "~/sanity/lib/queries";
 import { sanityFetch } from "~/sanity/lib/fetch";
 
 import Post from "~/components/post";
 
 export async function generateStaticParams() {
-  const posts = await sanityFetch<SanityDocument[]>({
-    query: POSTS_QUERY,
+  const posts = await sanityFetch<string[]>({
+    query: POST_SLUGS_QUERY,
     perspective: "published",
     stega: false,
   });
 
   return posts.map((post) => ({
-    slug: post.slug.current,
+    slug: post,
   }));
 }
 

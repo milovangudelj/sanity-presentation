@@ -96,12 +96,12 @@ export async function Footer() {
                   </li>
                   <li>
                     <Link href="/" className="hover:text-white transition">
-                      Father's Day Gifts
+                      Father&apos;s Day Gifts
                     </Link>
                   </li>
                   <li>
                     <Link href="/" className="hover:text-white transition">
-                      Mother's Day Gifts
+                      Mother&apos;s Day Gifts
                     </Link>
                   </li>
                   <li>
