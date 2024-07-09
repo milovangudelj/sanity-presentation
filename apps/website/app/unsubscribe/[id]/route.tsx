@@ -1,4 +1,8 @@
+import { renderAsync } from "@react-email/components";
 import { NextResponse } from "next/server";
+
+import { UnsubscribedEmail } from "@repo/email";
+
 import { getContacts, resend } from "~/lib/resend";
 
 interface Params {
@@ -23,13 +27,23 @@ async function unsubscribe(request: Request, context: { params: Params }) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  console.log(
-    `Unsubscribing contact with id ${contact.id} and email ${contact.email}`
-  );
-  await resend.contacts.update({
+  const { error } = await resend.contacts.update({
     id: contact.id,
     audienceId: process.env.RESEND_AUDIENCE_ID!,
     unsubscribed: true,
+  });
+
+  if (error) {
+    return NextResponse.redirect(
+      new URL(`/unsubscribed?error=missing-contact`, request.url)
+    );
+  }
+
+  await resend.emails.send({
+    from: "Milo <m@tldr.milovangudelj.com>",
+    to: [contact.email],
+    subject: "Unsubscribed!",
+    html: await renderAsync(<UnsubscribedEmail id={contact.id} />),
   });
 
   return NextResponse.redirect(

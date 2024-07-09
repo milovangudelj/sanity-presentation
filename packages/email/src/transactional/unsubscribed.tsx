@@ -17,17 +17,16 @@ import tailwindConfig from "../../tailwind.config";
 import { Footer } from "../_components/footer";
 import { baseUrl } from "../_lib";
 
-export interface WelcomeEmailProps {
+export interface UnsubscribedEmailProps {
   id: string;
-  resubscribed?: boolean;
 }
 
-export function WelcomeEmail({ id, resubscribed = false }: WelcomeEmailProps) {
+export function UnsubscribedEmail({ id }: UnsubscribedEmailProps) {
   return (
     <Tailwind config={tailwindConfig}>
       <Html>
         <Head />
-        <Preview>You have successfully subscribed to our newsletter!</Preview>
+        <Preview>You have unsubscribed from our newsletter!</Preview>
         <Body className="font-sans bg-transparent text-onyx">
           <Container className="bg-cream mx-auto pt-8 pb-12 mb-16">
             <Section className="px-12">
@@ -41,17 +40,17 @@ export function WelcomeEmail({ id, resubscribed = false }: WelcomeEmailProps) {
               </Link>
               <Hr className="my-8 border-onyx/40" />
               <Text className="text-[16px]/[1.1] text-onyx text-left">
-                {resubscribed ? "Welcome back!" : "Thank you for subscribing!"}
+                Thank you for the time spent with us!
               </Text>
               <Text className="text-[16px]/[1.1] text-onyx text-left">
-                You have successfully subscribed to our newsletter! You will now
-                receive updates and news about our products and services.
+                You have unsubscribed from our newsletter. It's sad to see you
+                go, but if you come back we'll welcome you with open arms.
               </Text>
               <Text className="text-[16px]/[1.1] text-onyx text-left">
                 — The Quill team
               </Text>
               <Hr className="my-8 border-onyx/40" />
-              <Footer id={id} canUnsubscribe />
+              <Footer id={id} />
             </Section>
           </Container>
         </Body>
@@ -59,8 +58,7 @@ export function WelcomeEmail({ id, resubscribed = false }: WelcomeEmailProps) {
     </Tailwind>
   );
 }
-export default WelcomeEmail;
-WelcomeEmail.PreviewProps = {
+export default UnsubscribedEmail;
+UnsubscribedEmail.PreviewProps = {
   id: "85cb2df4-1bb4-4995-a418-7388ccaa730c",
-  resubscribed: false,
-} satisfies WelcomeEmailProps;
+} satisfies UnsubscribedEmailProps;
