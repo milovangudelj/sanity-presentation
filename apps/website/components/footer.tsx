@@ -5,7 +5,7 @@ import { Feather } from "~/components/icons";
 
 export async function Footer() {
   return (
-    <footer className="bg-[#523015] text-white">
+    <footer className="bg-[#523015] flex-none text-white">
       <section className="py-16 px-4">
         <Container className="flex flex-col gap-16">
           <div className="flex gap-[128px]">

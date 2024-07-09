@@ -23,11 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         data-preview={draftMode().isEnabled ? "true" : "false"}
-        className={`${inter.variable} ${geist.variable} min-h-dvh overflow-x-hidden hide-scrollbar bg-[#F0ECE7] font-sans text-black antialiased`}
+        className={`${inter.variable} ${geist.variable} min-h-dvh flex flex-col overflow-x-hidden hide-scrollbar bg-[#F0ECE7] font-sans text-black antialiased`}
       >
         <PreviewOverlay isDraftMode={draftMode().isEnabled}>
           <Navbar />
-          {children}
+          <div className="flex-1">{children}</div>
           <Footer />
           <VisualEditing />
         </PreviewOverlay>

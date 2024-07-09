@@ -32,7 +32,7 @@ export async function Navbar() {
   const links = await getNavLinks();
 
   return (
-    <div className="p-4 sticky top-0 z-10 bg-[#F0ECE7]">
+    <div className="p-4 sticky flex-none top-0 z-10 bg-[#F0ECE7]">
       <Container className="flex items-baseline justify-between">
         <div className="flex items-baseline gap-4">
           <Link href="/" className="flex items-baseline gap-2">
