@@ -40,7 +40,7 @@ async function unsubscribe(request: Request, context: { params: Params }) {
   }
 
   await resend.emails.send({
-    from: "Milo <m@tldr.milovangudelj.com>",
+    from: "Quill <quill@tldr.milovangudelj.com>",
     to: [contact.email],
     subject: "Unsubscribed!",
     html: await renderAsync(<UnsubscribedEmail id={contact.id} />),

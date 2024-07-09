@@ -62,7 +62,7 @@ export async function subscribeContact(
 
     if (!error) {
       await resend.emails.send({
-        from: "Milo <m@tldr.milovangudelj.com>",
+        from: "Quill <quill@tldr.milovangudelj.com>",
         to: [contact.email],
         subject: "Subscribed! 🎉",
         html: await renderAsync(<WelcomeEmail id={contact.id} resubscribed />),
@@ -81,7 +81,7 @@ export async function subscribeContact(
 
   if (!error && data) {
     await resend.emails.send({
-      from: "Milo <m@tldr.milovangudelj.com>",
+      from: "Quill <quill@tldr.milovangudelj.com>",
       to: [email],
       subject: "Subscribed! 🎉",
       html: await renderAsync(<WelcomeEmail id={data.id} />),
