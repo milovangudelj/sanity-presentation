@@ -1,9 +1,11 @@
+import { Feather } from "@phosphor-icons/react";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "post",
   title: "Post",
   type: "document",
+  icon: Feather,
   fields: [
     defineField({
       name: "title",

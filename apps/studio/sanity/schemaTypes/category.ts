@@ -1,9 +1,11 @@
+import { Shapes } from "@phosphor-icons/react";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "category",
   title: "Category",
   type: "document",
+  icon: Shapes,
   fields: [
     defineField({
       name: "title",

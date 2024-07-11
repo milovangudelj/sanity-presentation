@@ -1,9 +1,11 @@
+import { User } from "@phosphor-icons/react";
 import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "author",
   title: "Author",
   type: "document",
+  icon: User,
   fields: [
     defineField({
       name: "firstName",
@@ -60,8 +62,15 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "name",
+      firstName: "firstName",
+      lastName: "lastName",
       media: "image",
+    },
+    prepare({ firstName, lastName, media }) {
+      return {
+        title: `${firstName} ${lastName.split("")[0].toUpperCase()}.`,
+        media,
+      };
     },
   },
 });

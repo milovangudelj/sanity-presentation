@@ -7,20 +7,29 @@ import { presentationTool } from "sanity/presentation";
 
 import { apiVersion, dataset, projectId } from "~/sanity/env";
 import { schema } from "~/sanity/schema";
+import { structure, defaultDocumentNode } from "~/sanity/structure";
 import { locations } from "~/sanity/lib/locations";
+import { patchedActions } from "~/sanity/lib/actions";
 
 export default defineConfig({
   auth: {
     loginMethod: "token",
   },
 
+  title: "Quill",
   projectId,
   dataset,
 
   schema,
 
+  document: {
+    actions: patchedActions,
+  },
   plugins: [
-    structureTool(),
+    structureTool({
+      structure,
+      defaultDocumentNode,
+    }),
     presentationTool({
       resolve: {
         // mainDocuments: defineDocuments([

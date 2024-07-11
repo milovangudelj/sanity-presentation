@@ -20,9 +20,21 @@ importers:
 
   apps/studio:
     dependencies:
+      '@phosphor-icons/react':
+        specifier: ^2.1.7
+        version: 2.1.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-email/components':
+        specifier: ^0.0.21
+        version: 0.0.21(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@repo/email':
+        specifier: workspace:^
+        version: link:../../packages/email
       '@sanity/image-url':
         specifier: ^1
         version: 1.0.2
+      '@sanity/ui':
+        specifier: ^2.6.3
+        version: 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@sanity/vision':
         specifier: ^3
         version: 3.48.1(@babel/runtime@7.24.7)(@codemirror/lint@6.8.1)(@codemirror/theme-one-dark@6.1.2)(@lezer/common@1.2.1)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
@@ -31,7 +43,7 @@ importers:
         version: 14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       next-sanity:
         specifier: ^9
-        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0(react@18.2.0))(@sanity/types@3.48.1)(@sanity/ui@2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)))(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.2.0))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)))(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       react:
         specifier: ^18
         version: 18.2.0
@@ -44,6 +56,9 @@ importers:
       sanity:
         specifier: ^3
         version: 3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1)
+      sanity-plugin-iframe-pane:
+        specifier: ^3.1.6
+        version: 3.1.6(@sanity/client@6.20.1)(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -104,7 +119,7 @@ importers:
         version: 14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-sanity:
         specifier: ^9.4.2
-        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0(react@18.3.1))(@sanity/types@3.48.1)(@sanity/ui@2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.3.1))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -180,6 +195,9 @@ importers:
 
   packages/email:
     dependencies:
+      '@portabletext/react':
+        specifier: ^3.1.0
+        version: 3.1.0(react@18.3.1)
       '@react-email/components':
         specifier: 0.0.15
         version: 0.0.15(@types/react@18.2.61)(react-email@2.1.0(@swc/helpers@0.5.5)(eslint@8.57.0))(react@18.3.1)
@@ -2349,8 +2367,25 @@ packages:
   '@sanity/generate-help-url@3.0.0':
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
 
+  '@sanity/icons@1.3.10':
+    resolution: {integrity: sha512-5wVG/vIiGuGrSmq+Bl3PY7XDgQrGv0fyHdJI64FSulnr2wH3NMqZ6C59UFxnrZ93sr7kOt0zQFoNv2lkPBi0Cg==}
+    peerDependencies:
+      react: ^16.9 || ^17 || ^18
+
+  '@sanity/icons@2.11.8':
+    resolution: {integrity: sha512-C4ViXtk6eyiNTQ5OmxpfmcK6Jw+LLTi9zg9XBUD15DzC4xTHaGW9SVfUa43YtPGs3WC3M0t0K59r0GDjh52HIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^18
+
   '@sanity/icons@3.2.0':
     resolution: {integrity: sha512-550sRrW0Y99mt9NrVmpzk8FjR3/i2ZhJjjoGY1GUu33Mp+v98tNtBU32BXb4/caV+M1/f0dMXbNpnagdkbXo5Q==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^18.3 || >=19.0.0-rc
+
+  '@sanity/icons@3.3.0':
+    resolution: {integrity: sha512-xLOn1sneanShXXBt/OLasCded5Oe2JLnInqDuEHi0NAQzoYQNHSmRj/yCsrl7f3T8YoiJKxaS2U2jrEvMlmSPw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18.3 || >=19.0.0-rc
@@ -2363,6 +2398,12 @@ packages:
     resolution: {integrity: sha512-LOiHx0in/xiXVzO/XyfSlJ7wokEwdL3Q2skRBGC2Vo9RCIWdzHdeQMop6ZKlSiOxDi6DxTv5rwLXK2Lag7S1Ew==}
     engines: {node: '>=18'}
     hasBin: true
+
+  '@sanity/incompatible-plugin@1.0.4':
+    resolution: {integrity: sha512-2z39G9PTM8MXOF4fJNx3TG4tH0RrTjtH6dVLW93DSjCPbIS7FgCY5yWjZfQ+HVkwhLsF7ATDAGLA/jp65pFjAg==}
+    peerDependencies:
+      react: ^16.9 || ^17 || ^18
+      react-dom: ^16.9 || ^17 || ^18
 
   '@sanity/insert-menu@1.0.6':
     resolution: {integrity: sha512-qvDj/hX2bLulgkD8ksXRwJa/xxtck7UKTBwIVqmWS2jq5bLdG+1D5K8pIEb24KI6VFkgPCrIkygX/pU+2HatWA==}
@@ -2442,8 +2483,8 @@ packages:
   '@sanity/types@3.48.1':
     resolution: {integrity: sha512-UG+AjRPYhh+URH5pBrIQ4h81rRbVZ+J/WLL+vP9uL/bseq61etWIYz8iljXWuReVHbqBPLGHQF1EpcMX1EZ5MQ==}
 
-  '@sanity/ui@2.5.0':
-    resolution: {integrity: sha512-mJYF2y/Q7qOdB6eY/P3f4//cDZwPF8X7dN/QQOZRioT/lIXG0OXvL1/w1sjHYAYVmu2CWtItUEEhEgGMXWEeIg==}
+  '@sanity/ui@2.6.3':
+    resolution: {integrity: sha512-qyNaIlfRvLQ21Z4+PP61qZ/Rjbk2UqqC/YTS9AmeRvetL9WEuUYFbMrprdKzAAUcWOqabBZVLjrU9F01nDEtmw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: ^18
@@ -5870,6 +5911,14 @@ packages:
     resolution: {integrity: sha512-Vsx6IPuMepvfaX2/jOFuUrJaloHvSmXavS9SL3iJhhIPAu20VfumCtdH5kpKlXKL1pBgCAZhWHXfLC4Fyg7qFg==}
     engines: {node: '>=14.18'}
 
+  sanity-plugin-iframe-pane@3.1.6:
+    resolution: {integrity: sha512-D+aEs+rIuVprcPSuqNNRiEr7OHZoc+zqhWU5cdaxUDe5XNtM4mJXwdofVLMibbp2g6rrAAWGSE9zY7l+R9swhA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: ^18.2.0
+      sanity: ^3.20.0
+      styled-components: ^5.2 || ^6.0.0
+
   sanity@3.48.1:
     resolution: {integrity: sha512-Y26DX7AAvICJ0C4p4f83OhFpoW9ju4ZZZzfhd3SDB6FYN09D5pvmNEUFfXYd3HqONYwUGXurGsvbxq3bFjCKKQ==}
     engines: {node: '>=18'}
@@ -6542,6 +6591,12 @@ packages:
     resolution: {integrity: sha512-PElTlVMwpblvbNqQ82d2n6RjStvdSoNe9FG28kNfz3WiXilJm4DdNkEzRhCZuIDwY8U08WVihhGR5iRqAwfDiw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  usehooks-ts@3.0.1:
+    resolution: {integrity: sha512-bgJ8S9w/SnQyACd3RvWp3CGncROxEENGqQLCsdaoyTb0zTENIna7MIV3OW6ywCfPaYYD2OPokw7oLPmSLLWP4w==}
+    engines: {node: '>=16.15.0'}
+    peerDependencies:
+      react: ^16.8.0  || ^17 || ^18
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -8339,6 +8394,11 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
+  '@phosphor-icons/react@2.1.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+
   '@phosphor-icons/react@2.1.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8419,6 +8479,13 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.61
       '@types/react-dom': 18.2.19
+
+  '@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.61)(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.23.4
+      react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.61
 
   '@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.61)(react@18.3.1)':
     dependencies:
@@ -8574,6 +8641,14 @@ snapshots:
       '@types/react': 18.2.61
       '@types/react-dom': 18.2.19
 
+  '@radix-ui/react-slot@1.0.2(@types/react@18.2.61)(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.23.4
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.61)(react@18.2.0)
+      react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.61
+
   '@radix-ui/react-slot@1.0.2(@types/react@18.2.61)(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.23.4
@@ -8695,6 +8770,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/body@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/body@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8702,6 +8781,10 @@ snapshots:
   '@react-email/button@0.0.14(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/button@0.0.15(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/button@0.0.15(react@18.3.1)':
     dependencies:
@@ -8712,6 +8795,11 @@ snapshots:
       prismjs: 1.29.0
       react: 18.3.1
 
+  '@react-email/code-block@0.0.5(react@18.2.0)':
+    dependencies:
+      prismjs: 1.29.0
+      react: 18.2.0
+
   '@react-email/code-block@0.0.5(react@18.3.1)':
     dependencies:
       prismjs: 1.29.0
@@ -8721,9 +8809,17 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/code-inline@0.0.2(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/code-inline@0.0.2(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/column@0.0.10(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/column@0.0.10(react@18.3.1)':
     dependencies:
@@ -8760,6 +8856,33 @@ snapshots:
       - '@types/react'
       - react-email
 
+  '@react-email/components@0.0.21(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@react-email/body': 0.0.8(react@18.2.0)
+      '@react-email/button': 0.0.15(react@18.2.0)
+      '@react-email/code-block': 0.0.5(react@18.2.0)
+      '@react-email/code-inline': 0.0.2(react@18.2.0)
+      '@react-email/column': 0.0.10(react@18.2.0)
+      '@react-email/container': 0.0.12(react@18.2.0)
+      '@react-email/font': 0.0.6(react@18.2.0)
+      '@react-email/head': 0.0.9(react@18.2.0)
+      '@react-email/heading': 0.0.12(@types/react@18.2.61)(react@18.2.0)
+      '@react-email/hr': 0.0.8(react@18.2.0)
+      '@react-email/html': 0.0.8(react@18.2.0)
+      '@react-email/img': 0.0.8(react@18.2.0)
+      '@react-email/link': 0.0.8(react@18.2.0)
+      '@react-email/markdown': 0.0.10(react@18.2.0)
+      '@react-email/preview': 0.0.9(react@18.2.0)
+      '@react-email/render': 0.0.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@react-email/row': 0.0.8(react@18.2.0)
+      '@react-email/section': 0.0.12(react@18.2.0)
+      '@react-email/tailwind': 0.0.18(react@18.2.0)
+      '@react-email/text': 0.0.8(react@18.2.0)
+      react: 18.2.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+
   '@react-email/components@0.0.21(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@react-email/body': 0.0.8(react@18.3.1)
@@ -8791,6 +8914,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/container@0.0.12(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/container@0.0.12(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8798,6 +8925,10 @@ snapshots:
   '@react-email/font@0.0.5(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/font@0.0.6(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/font@0.0.6(react@18.3.1)':
     dependencies:
@@ -8807,6 +8938,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/head@0.0.9(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/head@0.0.9(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8815,6 +8950,13 @@ snapshots:
     dependencies:
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.61)(react@18.3.1)
       react: 18.3.1
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@react-email/heading@0.0.12(@types/react@18.2.61)(react@18.2.0)':
+    dependencies:
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.61)(react@18.2.0)
+      react: 18.2.0
     transitivePeerDependencies:
       - '@types/react'
 
@@ -8829,6 +8971,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/hr@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/hr@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8836,6 +8982,10 @@ snapshots:
   '@react-email/html@0.0.7(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/html@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/html@0.0.8(react@18.3.1)':
     dependencies:
@@ -8845,6 +8995,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/img@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/img@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8853,9 +9007,18 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/link@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/link@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/markdown@0.0.10(react@18.2.0)':
+    dependencies:
+      md-to-react-email: 5.0.2(react@18.2.0)
+      react: 18.2.0
 
   '@react-email/markdown@0.0.10(react@18.3.1)':
     dependencies:
@@ -8872,6 +9035,10 @@ snapshots:
   '@react-email/preview@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/preview@0.0.9(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/preview@0.0.9(react@18.3.1)':
     dependencies:
@@ -8892,6 +9059,14 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-promise-suspense: 0.3.4
 
+  '@react-email/render@0.0.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      html-to-text: 9.0.5
+      js-beautify: 1.15.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-promise-suspense: 0.3.4
+
   '@react-email/render@0.0.16(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       html-to-text: 9.0.5
@@ -8904,6 +9079,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/row@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/row@0.0.8(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8911,6 +9090,10 @@ snapshots:
   '@react-email/section@0.0.11(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/section@0.0.12(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/section@0.0.12(react@18.3.1)':
     dependencies:
@@ -8920,6 +9103,10 @@ snapshots:
     dependencies:
       react: 18.3.1
 
+  '@react-email/tailwind@0.0.18(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@react-email/tailwind@0.0.18(react@18.3.1)':
     dependencies:
       react: 18.3.1
@@ -8927,6 +9114,10 @@ snapshots:
   '@react-email/text@0.0.7(react@18.3.1)':
     dependencies:
       react: 18.3.1
+
+  '@react-email/text@0.0.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
 
   '@react-email/text@0.0.8(react@18.3.1)':
     dependencies:
@@ -9086,11 +9277,27 @@ snapshots:
 
   '@sanity/generate-help-url@3.0.0': {}
 
+  '@sanity/icons@1.3.10(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@sanity/icons@2.11.8(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
   '@sanity/icons@3.2.0(react@18.2.0)':
     dependencies:
       react: 18.2.0
 
   '@sanity/icons@3.2.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@sanity/icons@3.3.0(react@18.2.0)':
+    dependencies:
+      react: 18.2.0
+
+  '@sanity/icons@3.3.0(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
@@ -9122,11 +9329,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@sanity/incompatible-plugin@1.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@sanity/icons': 1.3.10(react@18.2.0)
+      react: 18.2.0
+      react-copy-to-clipboard: 5.1.0(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+
   '@sanity/insert-menu@1.0.6(@sanity/types@3.48.1(debug@4.3.4))(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
     dependencies:
       '@sanity/icons': 3.2.0(react@18.2.0)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       lodash.startcase: 4.4.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -9138,7 +9352,7 @@ snapshots:
     dependencies:
       '@sanity/icons': 3.2.0(react@18.3.1)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@sanity/ui': 2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       lodash.startcase: 4.4.0
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -9229,7 +9443,7 @@ snapshots:
       '@sanity/client': 6.20.1(debug@4.3.4)
       '@sanity/icons': 3.2.0(react@18.2.0)
       '@sanity/preview-url-secret': 1.6.17(@sanity/client@6.20.1)
-      '@sanity/ui': 2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@sanity/uuid': 3.0.2
       '@types/lodash.isequal': 4.5.8
       fast-deep-equal: 3.1.3
@@ -9252,7 +9466,7 @@ snapshots:
       '@sanity/client': 6.20.1(debug@4.3.4)
       '@sanity/icons': 3.2.0(react@18.3.1)
       '@sanity/preview-url-secret': 1.6.17(@sanity/client@6.20.1)
-      '@sanity/ui': 2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@sanity/ui': 2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/uuid': 3.0.2
       '@types/lodash.isequal': 4.5.8
       fast-deep-equal: 3.1.3
@@ -9364,11 +9578,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@sanity/ui@2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
+  '@sanity/ui@2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@sanity/color': 3.0.6
-      '@sanity/icons': 3.2.0(react@18.2.0)
+      '@sanity/icons': 3.3.0(react@18.2.0)
       csstype: 3.1.3
       framer-motion: 11.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
@@ -9377,11 +9591,11 @@ snapshots:
       react-refractor: 2.2.0(react@18.2.0)
       styled-components: 6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
-  '@sanity/ui@2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@sanity/ui@2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@sanity/color': 3.0.6
-      '@sanity/icons': 3.2.0(react@18.3.1)
+      '@sanity/icons': 3.3.0(react@18.3.1)
       csstype: 3.1.3
       framer-motion: 11.0.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
@@ -9440,7 +9654,7 @@ snapshots:
       '@rexxars/react-split-pane': 0.1.93(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@sanity/color': 3.0.6
       '@sanity/icons': 3.2.0(react@18.2.0)
-      '@sanity/ui': 2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@uiw/react-codemirror': 4.22.2(@babel/runtime@7.24.7)(@codemirror/autocomplete@6.16.3(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.28.2)(@lezer/common@1.2.1))(@codemirror/language@6.10.2)(@codemirror/lint@6.8.1)(@codemirror/search@6.5.6)(@codemirror/state@6.4.1)(@codemirror/theme-one-dark@6.1.2)(@codemirror/view@6.28.2)(codemirror@6.0.1(@lezer/common@1.2.1))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       is-hotkey-esm: 1.0.0
       json-2-csv: 5.5.1
@@ -12251,6 +12465,11 @@ snapshots:
       react: 18.3.1
       react-email: 2.1.0(@swc/helpers@0.5.5)(eslint@8.57.0)
 
+  md-to-react-email@5.0.2(react@18.2.0):
+    dependencies:
+      marked: 7.0.4
+      react: 18.2.0
+
   md-to-react-email@5.0.2(react@18.3.1):
     dependencies:
       marked: 7.0.4
@@ -12398,14 +12617,14 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0(react@18.2.0))(@sanity/types@3.48.1)(@sanity/ui@2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)))(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
+  next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.2.0))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)))(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
     dependencies:
       '@portabletext/react': 3.1.0(react@18.2.0)
       '@sanity/client': 6.20.1(debug@4.3.4)
-      '@sanity/icons': 3.2.0(react@18.2.0)
+      '@sanity/icons': 3.3.0(react@18.2.0)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.20.1)(react@18.2.0)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@sanity/visual-editing': 2.1.5(@sanity/client@6.20.1)(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       groq: 3.48.1
       history: 5.3.0
@@ -12419,14 +12638,14 @@ snapshots:
       - react-dom
       - svelte
 
-  next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0(react@18.3.1))(@sanity/types@3.48.1)(@sanity/ui@2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
+  next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.3.1))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@portabletext/react': 3.1.0(react@18.3.1)
       '@sanity/client': 6.20.1(debug@4.3.4)
-      '@sanity/icons': 3.2.0(react@18.3.1)
+      '@sanity/icons': 3.3.0(react@18.3.1)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.20.1)(react@18.3.1)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@sanity/ui': 2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/visual-editing': 2.1.5(@sanity/client@6.20.1)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       groq: 3.48.1
       history: 5.3.0
@@ -13384,6 +13603,23 @@ snapshots:
     dependencies:
       '@sanity/diff-match-patch': 3.1.1
 
+  sanity-plugin-iframe-pane@3.1.6(@sanity/client@6.20.1)(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
+    dependencies:
+      '@sanity/icons': 2.11.8(react@18.2.0)
+      '@sanity/incompatible-plugin': 1.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@sanity/preview-url-secret': 1.6.17(@sanity/client@6.20.1)
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      framer-motion: 11.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      sanity: 3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1)
+      styled-components: 6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      suspend-react: 0.1.3(react@18.2.0)
+      usehooks-ts: 3.0.1(react@18.2.0)
+    transitivePeerDependencies:
+      - '@sanity/client'
+      - react-dom
+      - react-is
+
   sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1):
     dependencies:
       '@dnd-kit/core': 6.1.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -13415,7 +13651,7 @@ snapshots:
       '@sanity/schema': 3.48.1(debug@4.3.4)
       '@sanity/telemetry': 0.7.9(react@18.2.0)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
+      '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
       '@sanity/util': 3.48.1(debug@4.3.4)
       '@sanity/uuid': 3.0.2
       '@sentry/react': 8.13.0(react@18.2.0)
@@ -13549,7 +13785,7 @@ snapshots:
       '@sanity/schema': 3.48.1(debug@4.3.4)
       '@sanity/telemetry': 0.7.9(react@18.3.1)
       '@sanity/types': 3.48.1(debug@4.3.4)
-      '@sanity/ui': 2.5.0(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@sanity/ui': 2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@sanity/util': 3.48.1(debug@4.3.4)
       '@sanity/uuid': 3.0.2
       '@sentry/react': 8.13.0(react@18.3.1)
@@ -14473,6 +14709,11 @@ snapshots:
   use-sync-external-store@1.2.2(react@18.3.1):
     dependencies:
       react: 18.3.1
+
+  usehooks-ts@3.0.1(react@18.2.0):
+    dependencies:
+      lodash.debounce: 4.0.8
+      react: 18.2.0
 
   util-deprecate@1.0.2: {}
 
