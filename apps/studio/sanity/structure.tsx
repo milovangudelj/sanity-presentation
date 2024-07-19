@@ -14,7 +14,7 @@ import {
   User,
 } from "@phosphor-icons/react";
 
-import { NewsletterEmailPreview } from "~/sanity/components/newsletter-email-preview";
+import { EmailPreview } from "~/sanity/components/newsletter-email-preview";
 
 const formView = (S: StructureBuilder) => {
   return S.view.form().icon(PencilLine);
@@ -42,7 +42,7 @@ const iframeView = (S: StructureBuilder) => {
           </Flex>
         }
       >
-        <NewsletterEmailPreview id={document.displayed._id} />
+        <EmailPreview data={document.displayed} />
       </Suspense>
     ))
     .icon(Compass)

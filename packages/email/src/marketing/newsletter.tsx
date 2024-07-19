@@ -76,6 +76,6 @@ export default NewsletterEmail;
 NewsletterEmail.PreviewProps = {
   id: "85cb2df4-1bb4-4995-a418-7388ccaa730c",
   preview: "You have successfully subscribed to our newsletter!",
-  author: "Milovan G.",
+  author: "John D.",
   body: "You have successfully subscribed to our newsletter! You will now receive updates and news about our products and services.",
 } satisfies NewsletterEmailProps;
