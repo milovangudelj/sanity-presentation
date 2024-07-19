@@ -157,7 +157,7 @@ export function EmailPreview({ data }: { data: Data }) {
     if (!state.authorId) return;
 
     getAuthor(state.authorId);
-  }, [state.authorId]);
+  }, [getAuthor, state.authorId]);
 
   useEffect(() => {
     if (!state.authorId) return;
@@ -182,7 +182,7 @@ export function EmailPreview({ data }: { data: Data }) {
     return () => {
       subscription.unsubscribe();
     };
-  }, [client, state.authorId]);
+  }, [client, getAuthor, state.authorId]);
 
   useEffect(() => {
     dispatch({
