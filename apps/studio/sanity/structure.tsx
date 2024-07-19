@@ -20,7 +20,7 @@ const formView = (S: StructureBuilder) => {
   return S.view.form().icon(PencilLine);
 };
 
-const iframeView = (S: StructureBuilder) => {
+const emailPreview = (S: StructureBuilder) => {
   return S.view
     .component(({ document }) => (
       <Suspense
@@ -55,7 +55,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
 ) => {
   switch (schemaType) {
     case "newsletterEmail":
-      return S.document().views([formView(S), iframeView(S)]);
+      return S.document().views([formView(S), emailPreview(S)]);
     default:
       return S.document().views([formView(S)]);
   }
