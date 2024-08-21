@@ -6,7 +6,8 @@ import {
 } from "sanity";
 
 export const patchedActions: DocumentActionsResolver = (actions, context) => {
-  return context.schemaType === "newsletterEmail"
+  return context.schemaType === "marketingEmail" ||
+    context.schemaType === "transactionalEmail"
     ? patchActions(actions)
     : actions;
 };

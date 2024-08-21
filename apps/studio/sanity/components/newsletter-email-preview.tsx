@@ -1,5 +1,5 @@
 import { render } from "@react-email/components";
-import { type PortableTextBlock, groq } from "next-sanity";
+import { type PortableTextBlock, SanityDocument, groq } from "next-sanity";
 import { useEffect, useRef, useReducer, useCallback } from "react";
 import { useClient } from "sanity";
 
@@ -30,12 +30,27 @@ interface Author {
     alt: string | null;
   } | null;
 }
+interface Template {
+  _createdAt: string;
+  _updatedAt: string;
+  _id: string;
+  _rev: string;
+  _type: "emailCampaignTemplate";
+  body: PortableTextBlock[] | null;
+  description: string | null;
+  title: string | null;
+}
 interface Data {
   _createdAt: string;
   _updatedAt: string;
   _id: string;
   _rev: string;
-  _type: "newsletterEmail";
+  _type: "marketingEmail";
+  state: "partial";
+  campaign: {
+    _ref: string;
+    _type: "reference";
+  } | null;
   author: {
     _ref: string;
     _type: "reference";
@@ -45,9 +60,31 @@ interface Data {
   subject: string | null;
   title: string | null;
 }
-interface FullData extends Omit<Data, "author"> {
+interface FullData extends Omit<Data, "state" | "author"> {
+  state: "full";
   author: Author;
+  template: Template;
 }
+
+const applyTemplate = (
+  body: PortableTextBlock[] | string | null,
+  template: PortableTextBlock[] | null
+) => {
+  if (!template) return body;
+
+  let placeholderIndex = 0;
+  template.forEach((block, index) => {
+    placeholderIndex = block._type === "placeholder" ? index : placeholderIndex;
+  });
+
+  if (!body) return template.filter((block) => block._type !== "placeholder");
+
+  return [
+    template.slice(0, placeholderIndex),
+    body,
+    template.slice(placeholderIndex + 1),
+  ].flat();
+};
 
 const renderEmail = (data: Data | FullData) => {
   const author =
@@ -57,12 +94,19 @@ const renderEmail = (data: Data | FullData) => {
       ? `${data.author.firstName} ${data.author.lastName.split("")[0].toUpperCase()}.`
       : NewsletterEmail.PreviewProps.author;
 
+  const template = data.state === "full" ? data.template : undefined;
+
+  const body = applyTemplate(
+    data.body ?? NewsletterEmail.PreviewProps.body,
+    template?.body ?? null
+  );
+
   return render(
     <NewsletterEmail
       id="previewId"
       author={author}
       preview={data.preview ?? NewsletterEmail.PreviewProps.preview}
-      body={data.body ?? NewsletterEmail.PreviewProps.body}
+      body={body}
     />
   );
 };
@@ -70,6 +114,8 @@ const renderEmail = (data: Data | FullData) => {
 interface EmailPreviewState {
   authorId: string | undefined;
   author: Author | undefined;
+  templateId: string | undefined;
+  template: Template | undefined;
   fullData: FullData | undefined;
 }
 
@@ -83,6 +129,14 @@ type EmailPreviewAction =
       author: Author | undefined;
     }
   | {
+      type: "SET_TEMPLATE_ID";
+      templateId: string | undefined;
+    }
+  | {
+      type: "SET_TEMPLATE";
+      template: Template | undefined;
+    }
+  | {
       type: "SET_FULL_DATA";
       fullData: FullData | undefined;
     };
@@ -90,6 +144,8 @@ type EmailPreviewAction =
 const initialState: EmailPreviewState = {
   authorId: undefined,
   author: undefined,
+  templateId: undefined,
+  template: undefined,
   fullData: undefined,
 };
 
@@ -107,6 +163,16 @@ const reducer = (
       return {
         ...state,
         author: action.author,
+      };
+    case "SET_TEMPLATE_ID":
+      return {
+        ...state,
+        templateId: action.templateId,
+      };
+    case "SET_TEMPLATE":
+      return {
+        ...state,
+        template: action.template,
       };
     case "SET_FULL_DATA":
       return {
@@ -127,6 +193,12 @@ export function EmailPreview({ data }: { data: Data }) {
 
   useEffect(() => {
     dispatch({ type: "SET_AUTHOR_ID", authorId: data.author?._ref });
+    dispatch({
+      type: "SET_TEMPLATE_ID",
+      templateId: data.campaign?._ref
+        ? `${data.campaign._ref}_template`
+        : undefined,
+    });
   }, [data]);
 
   const getAuthor = useCallback(
@@ -153,11 +225,40 @@ export function EmailPreview({ data }: { data: Data }) {
     [client]
   );
 
+  const getTemplate = useCallback(
+    (id: string) => {
+      client
+        .fetch<(Template | null)[]>(
+          groq`[*[_id == $draft][0], *[_id == $published][0]]`,
+          {
+            draft: `drafts.${id}`,
+            published: id,
+          }
+        )
+        .then((docs) => {
+          dispatch({
+            type: "SET_TEMPLATE",
+            template: (docs[0] ?? docs[1])!,
+          });
+        })
+        .catch((e) => {
+          console.error("Failed to fetch template!", e);
+        });
+    },
+    [client]
+  );
+
   useEffect(() => {
     if (!state.authorId) return;
 
     getAuthor(state.authorId);
   }, [getAuthor, state.authorId]);
+
+  useEffect(() => {
+    if (!state.templateId) return;
+
+    getTemplate(state.templateId);
+  }, [getTemplate, state.templateId]);
 
   useEffect(() => {
     if (!state.authorId) return;
@@ -185,11 +286,41 @@ export function EmailPreview({ data }: { data: Data }) {
   }, [client, getAuthor, state.authorId]);
 
   useEffect(() => {
+    if (!state.templateId) return;
+
+    const subscription = client
+      .listen(groq`*[_id == $id][0]`, {
+        id: `drafts.${state.templateId}`,
+      })
+      .subscribe(({ result }) => {
+        if (!result) {
+          if (!state.templateId) return;
+          getTemplate(state.templateId);
+          return;
+        }
+
+        dispatch({
+          type: "SET_TEMPLATE",
+          template: result as Template,
+        });
+      });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [client, getTemplate, state.templateId]);
+
+  useEffect(() => {
     dispatch({
       type: "SET_FULL_DATA",
-      fullData: { ...data, author: state.author! },
+      fullData: {
+        ...data,
+        author: state.author!,
+        template: state.template!,
+        state: "full",
+      },
     });
-  }, [data, state.author]);
+  }, [data, state.author, state.template]);
 
   useEffect(() => {
     updateIframeContent(renderEmail(state.fullData ?? data));

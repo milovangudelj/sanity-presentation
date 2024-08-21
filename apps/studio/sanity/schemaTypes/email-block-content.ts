@@ -1,6 +1,6 @@
-import { defineType, defineArrayMember } from "sanity";
+import { defineArrayMember, defineField } from "sanity";
 
-export default defineType({
+export default defineField({
   title: "Email Block Content",
   name: "emailBlockContent",
   type: "array",

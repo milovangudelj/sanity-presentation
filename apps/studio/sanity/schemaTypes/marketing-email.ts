@@ -1,17 +1,24 @@
 import { Envelope } from "@phosphor-icons/react";
 import { defineField, defineType } from "sanity";
 
-// Email schma for the newsletter
+import emailBlockContent from "~/sanity/schemaTypes/email-block-content";
+
 export default defineType({
-  name: "newsletterEmail",
-  title: "Newsletter Email",
+  name: "marketingEmail",
+  title: "Marketing Email",
   type: "document",
   icon: Envelope,
   readOnly: ({ document }) => {
-    // Only allow editing a book if it does not have the `im-locked` document ID
+    // Only allow editing an email if it's not yet published
     return !document?._id.startsWith("drafts.");
   },
   fields: [
+    defineField({
+      name: "campaign",
+      title: "Campaign",
+      type: "reference",
+      to: { type: "emailCampaign" },
+    }),
     defineField({
       name: "title",
       title: "Title",
@@ -34,9 +41,9 @@ export default defineType({
       type: "string",
     }),
     defineField({
+      ...emailBlockContent,
       name: "body",
       title: "Body",
-      type: "emailBlockContent",
     }),
   ],
   preview: {

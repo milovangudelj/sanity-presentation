@@ -1,19 +1,39 @@
-import { type SchemaTypeDefinition } from "sanity";
+import { type SchemaPluginOptions } from "sanity";
 
 import author from "./schemaTypes/author";
 import blockContent from "./schemaTypes/block-content";
 import category from "./schemaTypes/category";
-import emailBlockContent from "./schemaTypes/email-block-content";
-import newsletterEmail from "./schemaTypes/newsletter-email";
+import marketingEmail from "./schemaTypes/marketing-email";
 import post from "./schemaTypes/post";
+import emailCampaign from "./schemaTypes/email-campaign";
+import transactionalEmail from "./schemaTypes/transactional-email";
+import emailCampaignTemplate from "./schemaTypes/email-campaign-template";
 
-export const schema: { types: SchemaTypeDefinition[] } = {
+export const schema: SchemaPluginOptions = {
   types: [
     post,
     author,
     category,
-    newsletterEmail,
+    emailCampaign,
+    emailCampaignTemplate,
+    transactionalEmail,
+    marketingEmail,
     blockContent,
-    emailBlockContent,
   ],
+  // templates: [
+  //   {
+  //     id: "ectTemplate",
+  //     title: "Email Campaign Template - Initial Data",
+  //     schemaType: "emailCampaignTemplate",
+  //     parameters: [
+  //       {
+  //         name: "title",
+  //         type: "string",
+  //       },
+  //     ],
+  //     value: (parameters: any) => ({
+  //       title: parameters.title,
+  //     }),
+  //   },
+  // ],
 };
