@@ -65,6 +65,9 @@ importers:
       styled-components:
         specifier: ^6
         version: 6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      zustand:
+        specifier: ^4.5.5
+        version: 4.5.5(@types/react@18.2.61)(immer@10.1.1)(react@18.2.0)
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: ^14.2.4
@@ -4473,6 +4476,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -6817,6 +6821,21 @@ packages:
 
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
+  zustand@4.5.5:
+    resolution: {integrity: sha512-+0PALYNJNgK6hldkgDq2vLrw5f6g/jCInz52n9RTpropGgeAf/ioFUCdtsjCqu4gNhW9D01rUQBROoRjdzyn2Q==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@types/react': '>=16.8'
+      immer: '>=9.0.6'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
 
 snapshots:
 
@@ -9207,6 +9226,14 @@ snapshots:
       - react
       - supports-color
 
+  '@sanity/client@6.20.1':
+    dependencies:
+      '@sanity/eventsource': 5.0.2
+      get-it: 8.6.2
+      rxjs: 7.8.1
+    transitivePeerDependencies:
+      - debug
+
   '@sanity/client@6.20.1(debug@3.2.7)':
     dependencies:
       '@sanity/eventsource': 5.0.2
@@ -9440,7 +9467,7 @@ snapshots:
 
   '@sanity/presentation@1.16.0(@sanity/client@6.20.1(debug@4.3.4))(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/icons': 3.2.0(react@18.2.0)
       '@sanity/preview-url-secret': 1.6.17(@sanity/client@6.20.1)
       '@sanity/ui': 2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
@@ -9486,17 +9513,17 @@ snapshots:
 
   '@sanity/preview-kit-compat@1.5.1(@sanity/client@6.20.1)(react@18.2.0)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       react: 18.2.0
 
   '@sanity/preview-kit-compat@1.5.1(@sanity/client@6.20.1)(react@18.3.1)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       react: 18.3.1
 
   '@sanity/preview-kit@5.1.0(@sanity/client@6.20.1)(react@18.2.0)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/preview-kit-compat': 1.5.1(@sanity/client@6.20.1)(react@18.2.0)
       mendoza: 3.0.7
     optionalDependencies:
@@ -9504,7 +9531,7 @@ snapshots:
 
   '@sanity/preview-kit@5.1.0(@sanity/client@6.20.1)(react@18.3.1)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/preview-kit-compat': 1.5.1(@sanity/client@6.20.1)(react@18.3.1)
       mendoza: 3.0.7
     optionalDependencies:
@@ -9512,7 +9539,7 @@ snapshots:
 
   '@sanity/preview-url-secret@1.6.17(@sanity/client@6.20.1)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/uuid': 3.0.2
 
   '@sanity/schema@3.48.1(debug@3.2.7)':
@@ -9573,7 +9600,7 @@ snapshots:
 
   '@sanity/types@3.48.1(debug@4.3.4)':
     dependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@types/react': 18.2.61
     transitivePeerDependencies:
       - debug
@@ -9681,7 +9708,7 @@ snapshots:
       scroll-into-view-if-needed: 3.1.0
       valibot: 0.31.1
     optionalDependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       next: 14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 
   '@sanity/visual-editing@2.1.5(@sanity/client@6.20.1)(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
@@ -9693,7 +9720,7 @@ snapshots:
       scroll-into-view-if-needed: 3.1.0
       valibot: 0.31.1
     optionalDependencies:
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       next: 14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   '@selderee/plugin-htmlparser2@0.11.0':
@@ -11667,6 +11694,10 @@ snapshots:
     optionalDependencies:
       debug: 3.2.7
 
+  follow-redirects@1.15.6(debug@4.3.4):
+    optionalDependencies:
+      debug: 4.3.4
+
   for-each@0.3.3:
     dependencies:
       is-callable: 1.2.7
@@ -11755,6 +11786,16 @@ snapshots:
       has-symbols: 1.0.3
       hasown: 2.0.0
 
+  get-it@8.6.2:
+    dependencies:
+      decompress-response: 7.0.0
+      follow-redirects: 1.15.6(debug@3.2.7)
+      is-retry-allowed: 2.2.0
+      progress-stream: 2.0.0
+      tunnel-agent: 0.6.0
+    transitivePeerDependencies:
+      - debug
+
   get-it@8.6.2(debug@3.2.7):
     dependencies:
       decompress-response: 7.0.0
@@ -11768,7 +11809,7 @@ snapshots:
   get-it@8.6.2(debug@4.3.4):
     dependencies:
       decompress-response: 7.0.0
-      follow-redirects: 1.15.6(debug@3.2.7)
+      follow-redirects: 1.15.6(debug@4.3.4)
       is-retry-allowed: 2.2.0
       progress-stream: 2.0.0
       tunnel-agent: 0.6.0
@@ -12620,7 +12661,7 @@ snapshots:
   next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.2.0))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.2.0(react@18.2.0))(react-is@18.3.1)(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)))(next@14.2.4(@babel/core@7.24.7)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)):
     dependencies:
       '@portabletext/react': 3.1.0(react@18.2.0)
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/icons': 3.3.0(react@18.2.0)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.20.1)(react@18.2.0)
       '@sanity/types': 3.48.1(debug@4.3.4)
@@ -12641,7 +12682,7 @@ snapshots:
   next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.3.0(react@18.3.1))(@sanity/types@3.48.1)(@sanity/ui@2.6.3(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.48.1(@types/node@20.11.24)(@types/react@18.2.61)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.31.1))(styled-components@6.1.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@portabletext/react': 3.1.0(react@18.3.1)
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/icons': 3.3.0(react@18.3.1)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.20.1)(react@18.3.1)
       '@sanity/types': 3.48.1(debug@4.3.4)
@@ -13633,7 +13674,7 @@ snapshots:
       '@sanity/bifur-client': 0.4.1
       '@sanity/block-tools': 3.48.1
       '@sanity/cli': 3.48.1(react@18.2.0)
-      '@sanity/client': 6.20.1(debug@4.3.4)
+      '@sanity/client': 6.20.1
       '@sanity/color': 3.0.6
       '@sanity/diff': 3.48.1
       '@sanity/diff-match-patch': 3.1.1
@@ -14929,3 +14970,11 @@ snapshots:
       readable-stream: 4.5.2
 
   zod@3.23.8: {}
+
+  zustand@4.5.5(@types/react@18.2.61)(immer@10.1.1)(react@18.2.0):
+    dependencies:
+      use-sync-external-store: 1.2.2(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.61
+      immer: 10.1.1
+      react: 18.2.0

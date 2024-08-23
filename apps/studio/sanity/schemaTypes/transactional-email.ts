@@ -9,6 +9,19 @@ export default defineType({
   icon: Envelope,
   fields: [
     defineField({
+      name: "status",
+      title: "Status",
+      type: "string",
+      hidden: true,
+      initialValue: "draft",
+    }),
+    defineField({
+      name: "publishedAt",
+      title: "Published At",
+      type: "datetime",
+      hidden: true,
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "string",

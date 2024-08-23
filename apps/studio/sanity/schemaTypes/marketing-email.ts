@@ -10,14 +10,28 @@ export default defineType({
   icon: Envelope,
   readOnly: ({ document }) => {
     // Only allow editing an email if it's not yet published
-    return !document?._id.startsWith("drafts.");
+    return document?.status !== "draft" && document?.publishedAt !== undefined;
   },
   fields: [
+    defineField({
+      name: "status",
+      title: "Status",
+      type: "string",
+      hidden: true,
+      initialValue: "draft",
+    }),
+    defineField({
+      name: "publishedAt",
+      title: "Published At",
+      type: "datetime",
+      hidden: true,
+    }),
     defineField({
       name: "campaign",
       title: "Campaign",
       type: "reference",
       to: { type: "emailCampaign" },
+      readOnly: true,
     }),
     defineField({
       name: "title",

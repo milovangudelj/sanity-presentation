@@ -20,20 +20,23 @@ export const schema: SchemaPluginOptions = {
     marketingEmail,
     blockContent,
   ],
-  // templates: [
-  //   {
-  //     id: "ectTemplate",
-  //     title: "Email Campaign Template - Initial Data",
-  //     schemaType: "emailCampaignTemplate",
-  //     parameters: [
-  //       {
-  //         name: "title",
-  //         type: "string",
-  //       },
-  //     ],
-  //     value: (parameters: any) => ({
-  //       title: parameters.title,
-  //     }),
-  //   },
-  // ],
+  templates: [
+    {
+      id: "meTemplate",
+      title: "Marketing Email - Initial Data",
+      schemaType: "marketingEmail",
+      parameters: [
+        {
+          name: "campaignId",
+          type: "string",
+        },
+      ],
+      value: (parameters: any) => ({
+        campaign: {
+          _type: "reference",
+          _ref: parameters.campaignId,
+        },
+      }),
+    },
+  ],
 };

@@ -1,3 +1,5 @@
+export { EmailTemplate } from "./src/email-template";
+
 // Transactional Emails
 
 export { WelcomeEmail } from "./src/transactional/welcome";

@@ -18,8 +18,8 @@ import {
   User,
 } from "@phosphor-icons/react";
 
-import { EmailPreview } from "~/sanity/components/newsletter-email-preview";
 import { apiVersion } from "~/sanity/env";
+import { EmailPreview } from "~/sanity/components/email-preview";
 
 const formView = (S: StructureBuilder) => {
   return S.view.form().icon(PencilLine);
@@ -47,7 +47,7 @@ const emailPreview = (S: StructureBuilder) => {
           </Flex>
         }
       >
-        <EmailPreview data={{ ...document.displayed, state: "partial" }} />
+        <EmailPreview data={document.displayed} />
       </Suspense>
     ))
     .icon(Compass)
@@ -60,6 +60,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
 ) => {
   switch (schemaType) {
     case "marketingEmail":
+    case "transactionalEmail":
       return S.document().views([formView(S), emailPreview(S)]);
     default:
       return S.document().views([formView(S)]);
@@ -145,6 +146,11 @@ export const structure: StructureResolver = (S) =>
                                   )
                                   .apiVersion(apiVersion)
                                   .params({ campaignId })
+                                  .initialValueTemplates([
+                                    S.initialValueTemplateItem("meTemplate", {
+                                      campaignId,
+                                    }),
+                                  ])
                               ),
                           ]);
                       }
@@ -163,9 +169,20 @@ export const structure: StructureResolver = (S) =>
                         .icon(Envelope)
                         .id("welcome-email")
                         .child(
-                          S.document()
-                            .id("welcome-email")
-                            .schemaType("transactionalEmail")
+                          S.defaultDocument({
+                            documentId: "welcome-email",
+                            schemaType: "transactionalEmail",
+                          }).id("welcome-email")
+                        ),
+                      S.listItem()
+                        .title("Unsubscribed Email")
+                        .icon(Envelope)
+                        .id("unsubscribed-email")
+                        .child(
+                          S.defaultDocument({
+                            documentId: "unsubscribed-email",
+                            schemaType: "transactionalEmail",
+                          }).id("unsubscribed-email")
                         ),
                     ])
                 ),

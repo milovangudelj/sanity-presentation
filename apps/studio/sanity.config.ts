@@ -22,8 +22,16 @@ export default defineConfig({
 
   schema,
 
+  scheduledPublishing: {
+    enabled: false,
+  },
+  tasks: { enabled: false },
+
   document: {
     actions: patchedActions,
+    comments: {
+      enabled: false,
+    },
   },
   plugins: [
     structureTool({

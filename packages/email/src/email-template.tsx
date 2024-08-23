@@ -1,0 +1,84 @@
+import {
+  Tailwind,
+  Html,
+  Container,
+  Head,
+  Preview,
+  Body,
+  Section,
+  Text,
+  Hr,
+  Link,
+  Img,
+} from "@react-email/components";
+import { PortableText } from "@portabletext/react";
+
+import tailwindConfig from "../tailwind.config";
+
+import { Footer } from "./_components/footer";
+import { baseUrl } from "./_lib";
+
+export interface EmailTemplateProps {
+  id: string;
+  preview: string;
+  author: string;
+  body: any;
+  canUnsubscribe: boolean;
+}
+
+export function EmailTemplate({
+  id,
+  preview,
+  author,
+  body,
+  canUnsubscribe = false,
+}: EmailTemplateProps) {
+  return (
+    <Tailwind config={tailwindConfig}>
+      <Html>
+        <Head />
+        <Preview>{preview}</Preview>
+        <Body className="font-sans bg-transparent text-onyx">
+          <Container className="bg-cream mx-auto pt-8 pb-12 mb-16">
+            <Section className="px-12">
+              <Link href={baseUrl}>
+                <Img
+                  src={`${baseUrl}/images/logo.png`}
+                  alt="Quill logo"
+                  width="92"
+                  height="36"
+                />
+              </Link>
+              <Hr className="my-8 border-onyx/40" />
+              <PortableText
+                value={body}
+                components={{
+                  block: {
+                    normal: ({ children }) => (
+                      <Text className="text-[16px]/[1.1] text-onyx text-left">
+                        {children}
+                      </Text>
+                    ),
+                  },
+                }}
+              />
+              <Text className="text-[16px]/[1.1] text-onyx text-left">
+                — {author}, The Quill team
+              </Text>
+              <Hr className="my-8 border-onyx/40" />
+              <Footer id={id} canUnsubscribe={canUnsubscribe} />
+            </Section>
+          </Container>
+        </Body>
+      </Html>
+    </Tailwind>
+  );
+}
+export default EmailTemplate;
+EmailTemplate.PreviewProps = {
+  id: "85cb2df4-1bb4-4995-a418-7388ccaa730c",
+  preview: "You have successfully subscribed to our newsletter!",
+  author: "John D.",
+  body: "You have successfully subscribed to our newsletter! You will now receive updates and news about our products and services.",
+  canUnsubscribe: false,
+} satisfies EmailTemplateProps;

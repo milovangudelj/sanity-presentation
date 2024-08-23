@@ -24,7 +24,8 @@
     "sanity": "^3",
     "sanity-plugin-iframe-pane": "^3.1.6",
     "server-only": "^0.0.1",
-    "styled-components": "^6"
+    "styled-components": "^6",
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.4",

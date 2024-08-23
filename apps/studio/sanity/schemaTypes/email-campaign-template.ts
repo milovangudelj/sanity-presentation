@@ -3,6 +3,7 @@ import { ArticleNyTimes } from "@phosphor-icons/react";
 
 import { ContentPlaceholder } from "~/sanity/components/content-placeholder";
 import emailBlockContent from "~/sanity/schemaTypes/email-block-content";
+import { PortableTextBlock } from "next-sanity";
 
 export default defineType({
   name: "emailCampaignTemplate",
@@ -46,6 +47,21 @@ export default defineType({
       ],
     }),
   ],
+  validation: (rule) =>
+    rule.custom((fields) => {
+      if (!fields) return true;
+      const body = fields.body as PortableTextBlock[];
+
+      const hasPlaceholder = body.some(
+        (block) => block._type === "placeholder"
+      );
+      const hasMultiplePlaceholders =
+        body.filter((block) => block._type === "placeholder").length > 1;
+
+      if (!hasPlaceholder) return "You must have at least one placeholder";
+      if (hasMultiplePlaceholders) return "You can only have one placeholder";
+      return true;
+    }),
   preview: {
     select: {
       title: "title",
