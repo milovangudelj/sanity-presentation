@@ -191,7 +191,9 @@ export function EmailPreview({ data }: { data: PreviewData }) {
   }, [client, getTemplate, templateId]);
 
   useEffect(() => {
-    updateIframeContent(renderEmail({ data, author, template }));
+    renderEmail({ data, author, template }).then((renderedOutput) =>
+      updateIframeContent(renderedOutput)
+    );
   }, [data, author, template]);
 
   const updateIframeContent = (content: string) => {

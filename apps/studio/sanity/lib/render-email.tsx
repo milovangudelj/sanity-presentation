@@ -3,7 +3,7 @@ import { type Author, type PreviewData, type Template } from "./email";
 import { type PortableTextBlock } from "next-sanity";
 import { render } from "@react-email/components";
 
-export const renderEmail = ({
+export async function renderEmail({
   data,
   author,
   template,
@@ -11,7 +11,7 @@ export const renderEmail = ({
   data: PreviewData;
   author: Author | null;
   template: Template | null;
-}) => {
+}) {
   const authorName =
     author?.firstName && author.lastName
       ? `${author.firstName} ${author.lastName.split("")[0].toUpperCase()}.`
@@ -30,7 +30,7 @@ export const renderEmail = ({
       body={
         data._type === "marketingEmail"
           ? body
-          : data.body ?? EmailTemplate.PreviewProps.body
+          : (data.body ?? EmailTemplate.PreviewProps.body)
       }
       canUnsubscribe={data._type === "marketingEmail"}
     />
