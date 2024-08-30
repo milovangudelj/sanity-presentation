@@ -3,22 +3,24 @@ import { type SchemaPluginOptions } from "sanity";
 import author from "./schemaTypes/author";
 import blockContent from "./schemaTypes/block-content";
 import category from "./schemaTypes/category";
+import contact from "./schemaTypes/contact";
+import emailCampaign from "./schemaTypes/email-campaign";
+import emailCampaignTemplate from "./schemaTypes/email-campaign-template";
 import marketingEmail from "./schemaTypes/marketing-email";
 import post from "./schemaTypes/post";
-import emailCampaign from "./schemaTypes/email-campaign";
 import transactionalEmail from "./schemaTypes/transactional-email";
-import emailCampaignTemplate from "./schemaTypes/email-campaign-template";
 
 export const schema: SchemaPluginOptions = {
   types: [
-    post,
     author,
+    blockContent,
     category,
+    contact,
     emailCampaign,
     emailCampaignTemplate,
-    transactionalEmail,
     marketingEmail,
-    blockContent,
+    post,
+    transactionalEmail,
   ],
   templates: [
     {

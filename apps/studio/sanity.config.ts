@@ -32,6 +32,12 @@ export default defineConfig({
     comments: {
       enabled: false,
     },
+    newDocumentOptions: (prev, { currentUser, creationContext }) => {
+      const { schemaType } = creationContext;
+      if (schemaType === "contact") return [];
+
+      return prev.filter((template) => template.templateId !== "contact");
+    },
   },
   plugins: [
     structureTool({

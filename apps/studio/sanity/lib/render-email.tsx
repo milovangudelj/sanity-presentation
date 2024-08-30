@@ -1,6 +1,6 @@
 import { EmailTemplate } from "@repo/email";
-import { Author, PreviewData, Template } from "./email";
-import { PortableTextBlock } from "next-sanity";
+import { type Author, type PreviewData, type Template } from "./email";
+import { type PortableTextBlock } from "next-sanity";
 import { render } from "@react-email/components";
 
 export const renderEmail = ({
@@ -13,7 +13,7 @@ export const renderEmail = ({
   template: Template | null;
 }) => {
   const authorName =
-    author?.firstName && author?.lastName
+    author?.firstName && author.lastName
       ? `${author.firstName} ${author.lastName.split("")[0].toUpperCase()}.`
       : EmailTemplate.PreviewProps.author;
 

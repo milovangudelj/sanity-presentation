@@ -20,6 +20,7 @@ import {
 
 import { apiVersion } from "~/sanity/env";
 import { EmailPreview } from "~/sanity/components/email-preview";
+import { ContactView } from "./schemaTypes/contact";
 
 const formView = (S: StructureBuilder) => {
   return S.view.form().icon(PencilLine);
@@ -90,6 +91,31 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title("Emails")
             .items([
+              S.listItem()
+                .title("Contacts")
+                .icon(User)
+                .child(
+                  S.documentTypeList("contact")
+                    .title("Contacts")
+                    .child(
+                      (id) => S.document().schemaType("contact").documentId(id)
+                      // .views([
+                      //   S.view
+                      //     .component(
+                      //       ({ document, documentId, schemaType }) => (
+                      //         <ContactView
+                      //           document={document}
+                      //           documentId={documentId}
+                      //           schemaType={schemaType}
+                      //         />
+                      //       )
+                      //     )
+                      //     .id(id)
+                      //     .title("Contact"),
+                      // ])
+                    )
+                ),
+              S.divider(),
               S.listItem()
                 .title("Campaigns")
                 .icon(Megaphone)

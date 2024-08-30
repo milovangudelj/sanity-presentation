@@ -4,6 +4,7 @@ import { patchMarketingEmailActions } from "./marketing-email-actions";
 import { patchTransactionalEmailActions } from "./transactional-email-actions";
 import { patchEmailCampaignActions } from "./email-campaign-actions";
 import { patchEmailCampaignTemplateActions } from "./email-campaign-template-actions";
+import { patchContactActions } from "./contact-actions";
 
 export const patchedActions: DocumentActionsResolver = (actions, context) => {
   switch (context.schemaType) {
@@ -15,6 +16,8 @@ export const patchedActions: DocumentActionsResolver = (actions, context) => {
       return patchEmailCampaignActions(actions);
     case "emailCampaignTemplate":
       return patchEmailCampaignTemplateActions(actions);
+    case "contact":
+      return patchContactActions(actions);
     default:
       return actions;
   }
