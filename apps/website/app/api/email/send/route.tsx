@@ -148,17 +148,16 @@ export async function POST(request: Request) {
     ).data
   );
 
-  const contactChunks = chunkContacts(contacts, {
+  const results = await batchSend(contacts, {
     from: "Quill <quill@tldr.milovangudelj.com>",
     subject: marketingEmail.subject,
     html: email,
   });
 
-  const { error } = await resend.batch.send(contactChunks);
-
-  if (error) {
+  const erroredResult = results.find(({ error }) => error);
+  if (erroredResult?.error) {
     return Response.json(
-      { status: "failed", message: error },
+      { status: "failed", message: erroredResult.error },
       {
         status: 500,
       }
@@ -242,22 +241,37 @@ function applyTemplate(
   ].flat();
 }
 
-function chunkContacts(
+async function batchSend(
   contacts: z.infer<typeof ContacsListPayloadSchema>["data"],
   { from, subject, html }: { from: string; subject: string; html: string }
 ) {
-  const chunks = [];
+  const batches = [];
 
-  const subscribers = contacts.filter((contact) => !contact.unsubscribed);
-
-  for (let i = 0; i < subscribers.length; i += 50) {
-    chunks.push({
-      from,
-      subject,
-      html,
-      to: subscribers.slice(i, i + 50).map((subscriber) => subscriber.email),
-    });
+  for (let i = 0; i < contacts.length; i += 100) {
+    batches.push(contacts.slice(i, i + 100));
   }
 
-  return chunks;
+  const results = await Promise.all(
+    batches.map(async (batch) => {
+      const { data, error } = await sendToBatch(batch, { from, subject, html });
+
+      return { data, error };
+    })
+  );
+
+  return results;
+}
+
+async function sendToBatch(
+  batch: z.infer<typeof ContacsListPayloadSchema>["data"],
+  { from, subject, html }: { from: string; subject: string; html: string }
+) {
+  return resend.batch.send(
+    batch.map((contact) => ({
+      from,
+      to: [contact.email],
+      subject,
+      html,
+    }))
+  );
 }
