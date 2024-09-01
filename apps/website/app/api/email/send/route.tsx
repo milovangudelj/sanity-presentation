@@ -134,12 +134,6 @@ export async function POST(request: Request) {
   const author = await getAuthor(marketingEmail.author._ref);
   const template = await getTemplate(marketingEmail.campaign._ref);
 
-  const email = await renderEmail({
-    data: marketingEmail,
-    author,
-    template,
-  });
-
   const { data: contacts } = ContacsListPayloadSchema.parse(
     (
       await resend.contacts.list({
@@ -148,11 +142,18 @@ export async function POST(request: Request) {
     ).data
   );
 
-  const results = await batchSend(contacts, {
-    from: "Quill <quill@tldr.milovangudelj.com>",
-    subject: marketingEmail.subject,
-    html: email,
-  });
+  const results = await batchSend(
+    contacts,
+    {
+      from: "Quill <quill@tldr.milovangudelj.com>",
+      subject: marketingEmail.subject,
+    },
+    {
+      data: marketingEmail,
+      author,
+      template,
+    }
+  );
 
   const erroredResult = results.find(({ error }) => error);
   if (erroredResult?.error) {
@@ -190,14 +191,58 @@ async function getTemplate(catId: string) {
   );
 }
 
+async function batchSend(
+  contacts: z.infer<typeof ContacsListPayloadSchema>["data"],
+  { from, subject }: { from: string; subject: string },
+  {
+    data,
+    author,
+    template,
+  }: {
+    data: z.infer<typeof MarketingEmailPayloadSchema>;
+    author: z.infer<typeof AuthorSchema>;
+    template: z.infer<typeof TemplateSchema>;
+  }
+) {
+  const batches = [];
+
+  for (let i = 0; i < contacts.length; i += 100) {
+    batches.push(contacts.slice(i, i + 100));
+  }
+
+  const results = await Promise.all(
+    batches.map(async (batch) =>
+      resend.batch.send(
+        await Promise.all(
+          batch.map(async (contact) => ({
+            from,
+            to: [contact.email],
+            subject,
+            html: await renderEmail({
+              data,
+              author,
+              template,
+              contactId: contact.id,
+            }),
+          }))
+        )
+      )
+    )
+  );
+
+  return results;
+}
+
 async function renderEmail({
   data,
   author,
   template,
+  contactId,
 }: {
   data: z.infer<typeof MarketingEmailPayloadSchema>;
   author: z.infer<typeof AuthorSchema>;
   template: z.infer<typeof TemplateSchema>;
+  contactId: string;
 }) {
   const authorName = `${author.firstName} ${author.lastName.split("")[0].toUpperCase()}.`;
   const authorImage = author.image
@@ -208,7 +253,7 @@ async function renderEmail({
 
   const email = render(
     <EmailTemplate
-      id={data._id}
+      id={contactId}
       author={authorName}
       authorImage={authorImage}
       preview={data.preview}
@@ -239,30 +284,4 @@ function applyTemplate(
     body,
     template.slice(placeholderIndex + 1),
   ].flat();
-}
-
-async function batchSend(
-  contacts: z.infer<typeof ContacsListPayloadSchema>["data"],
-  { from, subject, html }: { from: string; subject: string; html: string }
-) {
-  const batches = [];
-
-  for (let i = 0; i < contacts.length; i += 100) {
-    batches.push(contacts.slice(i, i + 100));
-  }
-
-  const results = await Promise.all(
-    batches.map(async (batch) =>
-      resend.batch.send(
-        batch.map((contact) => ({
-          from,
-          to: [contact.email],
-          subject,
-          html,
-        }))
-      )
-    )
-  );
-
-  return results;
 }
