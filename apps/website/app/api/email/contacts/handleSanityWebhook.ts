@@ -75,10 +75,10 @@ async function createOrUpdateResendContact(data: SanityPayload) {
       }
     );
 
-    console.log(
-      "Update status:",
-      response.error ? `failed. ${response.error.name}` : "success."
-    );
+    // console.log(
+    //   "Update status:",
+    //   response.error ? `failed. ${response.error.name}` : "success."
+    // );
   } else {
     const response = await resend.post(`/audiences/${audienceId}/contacts`, {
       id: data._id,
@@ -88,10 +88,10 @@ async function createOrUpdateResendContact(data: SanityPayload) {
       unsubscribed: !data.subscribed,
     });
 
-    console.log(
-      "Create status:",
-      response.error ? `failed. ${response.error.name}` : "success."
-    );
+    // console.log(
+    //   "Create status:",
+    //   response.error ? `failed. ${response.error.name}` : "success."
+    // );
   }
 }
 
@@ -106,8 +106,8 @@ async function deleteResendContact(id: string) {
     `/audiences/${audienceId}/contacts/${id}`
   );
 
-  console.log(
-    "Delete status:",
-    response.error ? `failed. ${response.error.name}` : "success."
-  );
+  // console.log(
+  //   "Delete status:",
+  //   response.error ? `failed. ${response.error.name}` : "success."
+  // );
 }

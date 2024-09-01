@@ -17,8 +17,6 @@ export async function POST(request: Request, context: { params: Params }) {
 }
 
 async function unsubscribe(request: Request, context: { params: Params }) {
-  console.log(await getContacts());
-
   const contact = (await getContacts())?.find(
     ({ id }) => id === context.params.id
   );

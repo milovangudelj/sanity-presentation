@@ -102,17 +102,17 @@ export async function POST(request: Request) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
   const body = await request.json();
 
-  if (
-    !signature ||
-    !(await isValidSignature(JSON.stringify(body), signature, secret))
-  ) {
-    return Response.json(
-      { status: "failed", message: "Invalid signature" },
-      {
-        status: 401,
-      }
-    );
-  }
+  // if (
+  //   !signature ||
+  //   !(await isValidSignature(JSON.stringify(body), signature, secret))
+  // ) {
+  //   return Response.json(
+  //     { status: "failed", message: "Invalid signature" },
+  //     {
+  //       status: 401,
+  //     }
+  //   );
+  // }
 
   const payload = SanityMarketingPayloadShema.parse(body);
 
@@ -134,7 +134,7 @@ export async function POST(request: Request) {
   const author = await getAuthor(marketingEmail.author._ref);
   const template = await getTemplate(marketingEmail.campaign._ref);
 
-  const { data: contacts } = ContacsListPayloadSchema.parse(
+  const { data } = ContacsListPayloadSchema.parse(
     (
       await resend.contacts.list({
         audienceId: process.env.RESEND_AUDIENCE_ID!,
@@ -142,18 +142,28 @@ export async function POST(request: Request) {
     ).data
   );
 
-  const results = await batchSend(
-    contacts,
-    {
-      from: "Quill <quill@tldr.milovangudelj.com>",
-      subject: marketingEmail.subject,
-    },
-    {
+  const contacts = data.filter((contact) => !contact.unsubscribed);
+
+  const emails = [];
+
+  for (const contact of contacts) {
+    const email = await renderEmail({
       data: marketingEmail,
       author,
       template,
-    }
-  );
+      contactId: contact.id,
+    });
+
+    emails.push({
+      contactId: contact.id,
+      email,
+    });
+  }
+
+  const results = await batchSend(contacts, emails, {
+    from: "Quill <quill@tldr.milovangudelj.com>",
+    subject: marketingEmail.subject,
+  });
 
   const erroredResult = results.find(({ error }) => error);
   if (erroredResult?.error) {
@@ -193,16 +203,11 @@ async function getTemplate(catId: string) {
 
 async function batchSend(
   contacts: z.infer<typeof ContacsListPayloadSchema>["data"],
-  { from, subject }: { from: string; subject: string },
-  {
-    data,
-    author,
-    template,
-  }: {
-    data: z.infer<typeof MarketingEmailPayloadSchema>;
-    author: z.infer<typeof AuthorSchema>;
-    template: z.infer<typeof TemplateSchema>;
-  }
+  emails: {
+    contactId: string;
+    email: string;
+  }[],
+  { from, subject }: { from: string; subject: string }
 ) {
   const batches = [];
 
@@ -211,23 +216,16 @@ async function batchSend(
   }
 
   const results = await Promise.all(
-    batches.map(async (batch) =>
-      resend.batch.send(
-        await Promise.all(
-          batch.map(async (contact) => ({
-            from,
-            to: [contact.email],
-            subject,
-            html: await renderEmail({
-              data,
-              author,
-              template,
-              contactId: contact.id,
-            }),
-          }))
-        )
-      )
-    )
+    batches.map((batch) => {
+      const payload = batch.map((contact) => ({
+        from,
+        to: [contact.email],
+        subject,
+        html: emails.find(({ contactId }) => contactId === contact.id)!.email,
+      }));
+
+      return resend.batch.send(payload);
+    })
   );
 
   return results;
