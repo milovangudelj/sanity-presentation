@@ -252,26 +252,17 @@ async function batchSend(
   }
 
   const results = await Promise.all(
-    batches.map(async (batch) => {
-      const { data, error } = await sendToBatch(batch, { from, subject, html });
-
-      return { data, error };
-    })
+    batches.map(async (batch) =>
+      resend.batch.send(
+        batch.map((contact) => ({
+          from,
+          to: [contact.email],
+          subject,
+          html,
+        }))
+      )
+    )
   );
 
   return results;
-}
-
-async function sendToBatch(
-  batch: z.infer<typeof ContacsListPayloadSchema>["data"],
-  { from, subject, html }: { from: string; subject: string; html: string }
-) {
-  return resend.batch.send(
-    batch.map((contact) => ({
-      from,
-      to: [contact.email],
-      subject,
-      html,
-    }))
-  );
 }
