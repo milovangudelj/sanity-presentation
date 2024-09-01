@@ -52,7 +52,7 @@ export async function EmailTemplate({
             }}
             className="mx-auto pt-8 pb-12 mb-16"
           >
-            <Section className="px-2">
+            <Section className="px-4">
               <Link href={process.env.NEXT_PUBLIC_WEBSITE_URL}>
                 <Img
                   src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/logo.png`}
