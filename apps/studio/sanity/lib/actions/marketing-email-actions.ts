@@ -30,7 +30,9 @@ const createPatchedMarketingEmailAction = (
       onHandle:
         action.action === "publish"
           ? handleMarketingEmailPublish(props)
-          : originalAction.onHandle,
+          : action.action === "duplicate"
+            ? handleMarketingEmailDuplicate(props)
+            : originalAction.onHandle,
     } satisfies DocumentActionDescription;
   }
   return patchedMarketingEmailAction;
@@ -50,6 +52,25 @@ const handleMarketingEmailPublish = (props: DocumentActionProps) => {
     ]);
 
     publish.execute();
+
+    props.onComplete();
+  };
+};
+
+const handleMarketingEmailDuplicate = (props: DocumentActionProps) => {
+  const { patch, duplicate } = useDocumentOperation(props.id, props.type);
+
+  return () => {
+    patch.execute([
+      {
+        set: {
+          status: "draft",
+          publishedAt: null,
+        },
+      },
+    ]);
+
+    duplicate.execute(props.id);
 
     props.onComplete();
   };

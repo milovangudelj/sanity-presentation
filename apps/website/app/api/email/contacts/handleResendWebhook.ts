@@ -1,12 +1,7 @@
 import { z } from "zod";
 import { Transaction } from "next-sanity";
 
-import {
-  dataChanged,
-  getResendContact,
-  getSanityContact,
-  sanity,
-} from "./utils";
+import { dataChanged, getSanityContact, sanity } from "./utils";
 
 const ResendPayloadSchema = z.object({
   created_at: z.string().datetime({ precision: 3 }),
@@ -17,8 +12,8 @@ const ResendPayloadSchema = z.object({
     audience_id: z.string(),
     email: z.string().email(),
     unsubscribed: z.boolean(),
-    first_name: z.nullable(z.string()),
-    last_name: z.nullable(z.string()),
+    first_name: z.string().optional().nullable(),
+    last_name: z.string().optional().nullable(),
   }),
   type: z.enum(["contact.created", "contact.updated", "contact.deleted"]),
 });

@@ -48,7 +48,7 @@ export default defineConfig({
       resolve: {
         // mainDocuments: defineDocuments([
         //   {
-        //     route: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/posts/:slug`,
+        //     route: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/posts/:slug`,
         //     filter: `_type == "post" && slug.current == $slug`,
         //   },
         // ]),
@@ -56,7 +56,7 @@ export default defineConfig({
       },
       previewUrl: {
         draftMode: {
-          enable: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/draft`,
+          enable: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/draft`,
         },
       },
     }),

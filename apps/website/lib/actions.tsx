@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { renderAsync } from "@react-email/components";
+import { render } from "@react-email/components";
 
 import { WelcomeEmail } from "@repo/email";
 
@@ -65,7 +65,7 @@ export async function subscribeContact(
         from: "Quill <quill@tldr.milovangudelj.com>",
         to: [contact.email],
         subject: "Subscribed! 🎉",
-        html: await renderAsync(<WelcomeEmail id={contact.id} resubscribed />),
+        html: await render(<WelcomeEmail id={contact.id} resubscribed />),
       });
 
       revalidatePath("/");
@@ -84,7 +84,7 @@ export async function subscribeContact(
       from: "Quill <quill@tldr.milovangudelj.com>",
       to: [email],
       subject: "Subscribed! 🎉",
-      html: await renderAsync(<WelcomeEmail id={data.id} />),
+      html: await render(<WelcomeEmail id={data.id} />),
     });
 
     revalidatePath("/");

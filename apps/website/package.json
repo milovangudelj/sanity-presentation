@@ -16,6 +16,7 @@
     "@repo/email": "workspace:^",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-url-secret": "^1.6.20",
+    "@sanity/webhook": "^4.0.4",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.30",
     "next": "^14.2.7",

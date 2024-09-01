@@ -1,7 +1,21 @@
-import { EmailTemplate } from "@repo/email";
-import { type Author, type PreviewData, type Template } from "./email";
+import { type Image } from "sanity";
 import { type PortableTextBlock } from "next-sanity";
+import createImageUrlBuilder from "@sanity/image-url";
 import { render } from "@react-email/components";
+
+import { EmailTemplate } from "@repo/email";
+
+import { dataset, projectId } from "~/sanity/env";
+import { type Author, type PreviewData, type Template } from "./email";
+
+const imageBuilder = createImageUrlBuilder({
+  projectId,
+  dataset,
+});
+
+const urlForImage = (source: Image) => {
+  return imageBuilder.image(source).auto("format").fit("max").url();
+};
 
 export async function renderEmail({
   data,
@@ -16,6 +30,9 @@ export async function renderEmail({
     author?.firstName && author.lastName
       ? `${author.firstName} ${author.lastName.split("")[0].toUpperCase()}.`
       : EmailTemplate.PreviewProps.author;
+  const authorImage = author?.image?.asset
+    ? urlForImage(author.image.asset)
+    : undefined;
 
   const body = applyTemplate(
     data.body ?? EmailTemplate.PreviewProps.body,
@@ -26,6 +43,7 @@ export async function renderEmail({
     <EmailTemplate
       id="previewId"
       author={authorName}
+      authorImage={authorImage}
       preview={data.preview ?? EmailTemplate.PreviewProps.preview}
       body={
         data._type === "marketingEmail"
@@ -35,7 +53,7 @@ export async function renderEmail({
       canUnsubscribe={data._type === "marketingEmail"}
     />
   );
-};
+}
 
 const applyTemplate = (
   body: PortableTextBlock[] | string | null,

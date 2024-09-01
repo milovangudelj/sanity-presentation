@@ -1,4 +1,4 @@
-import { renderAsync } from "@react-email/components";
+import { render } from "@react-email/components";
 import { NextResponse } from "next/server";
 
 import { UnsubscribedEmail } from "@repo/email";
@@ -43,7 +43,7 @@ async function unsubscribe(request: Request, context: { params: Params }) {
     from: "Quill <quill@tldr.milovangudelj.com>",
     to: [contact.email],
     subject: "Unsubscribed!",
-    html: await renderAsync(<UnsubscribedEmail id={contact.id} />),
+    html: await render(<UnsubscribedEmail id={contact.id} />),
   });
 
   return NextResponse.redirect(

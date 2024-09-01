@@ -15,7 +15,6 @@ import {
 import tailwindConfig from "../../tailwind.config";
 
 import { Footer } from "../_components/footer";
-import { baseUrl } from "../_lib";
 
 export interface WelcomeEmailProps {
   id: string;
@@ -31,9 +30,9 @@ export function WelcomeEmail({ id, resubscribed = false }: WelcomeEmailProps) {
         <Body className="font-sans bg-transparent text-onyx">
           <Container className="bg-cream mx-auto pt-8 pb-12 mb-16">
             <Section className="px-12">
-              <Link href={baseUrl}>
+              <Link href={process.env.NEXT_PUBLIC_WEBSITE_URL}>
                 <Img
-                  src={`${baseUrl}/images/logo.png`}
+                  src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/logo.png`}
                   alt="Quill logo"
                   width="92"
                   height="36"

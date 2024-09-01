@@ -46,8 +46,8 @@ export const ResendContactSchema = z.nullable(
   z.object({
     id: z.string(),
     email: z.string().email(),
-    first_name: z.nullable(z.string()),
-    last_name: z.nullable(z.string()),
+    first_name: z.string().optional().nullable(),
+    last_name: z.string().optional().nullable(),
     created_at: z.string().datetime({ precision: 3 }),
     unsubscribed: z.boolean(),
   })
