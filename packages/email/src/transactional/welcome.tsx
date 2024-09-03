@@ -50,7 +50,6 @@ export function WelcomeEmail({ id, resubscribed = false }: WelcomeEmailProps) {
                   opacity: 0.1,
                 }}
               />
-              <Hr className="my-8 border-onyx/40" />
               <Text className="text-[16px]/[1.1] text-onyx text-left">
                 {resubscribed ? "Welcome back!" : "Thank you for subscribing!"}
               </Text>
