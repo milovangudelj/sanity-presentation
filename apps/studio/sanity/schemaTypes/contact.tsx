@@ -88,7 +88,7 @@ export default defineType({
       const subtitle = `${firstName} ${surname}`;
 
       const hash = crypto
-        .createHash("sha256")
+        .createHash("md5")
         .update(email.trim().toLowerCase())
         .digest("hex");
 
