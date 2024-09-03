@@ -1,7 +1,11 @@
 import { z } from "zod";
 import { Transaction } from "next-sanity";
 
-import { dataChanged, getSanityContact, sanity } from "./utils";
+import {
+  dataChanged,
+  getSanityContact,
+  sanity,
+} from "~/lib/email/contacts/utils";
 
 const ResendPayloadSchema = z.object({
   created_at: z.string().datetime({ precision: 3 }),
@@ -19,8 +23,9 @@ const ResendPayloadSchema = z.object({
 });
 type ResendPayload = z.infer<typeof ResendPayloadSchema>;
 
-export async function handleResendWebhook(data: any) {
-  const payload = ResendPayloadSchema.parse(data);
+export async function handleResendContactSync(req: Request) {
+  const body = await req.json();
+  const payload = ResendPayloadSchema.parse(body);
 
   try {
     const transaction = sanity.transaction();
@@ -66,14 +71,6 @@ async function createOrUpdateSanityContact(
     return;
   }
 
-  // console.log(
-  //   "Resend was updated. Data changed:",
-  //   dataChanged(existingContact, data)
-  // );
-  // console.log("Resend contact:", await getResendContact(data.id));
-  // console.log("Sanity contact:", existingContact);
-  // return;
-
   const draftDocumentId = `drafts.${data.id}`;
 
   const existingDrafts = await sanity.fetch<(string | null)[]>(
@@ -102,12 +99,10 @@ async function createOrUpdateSanityContact(
   };
   const draftId = `drafts.${document._id}`;
 
-  // Create (or update) existing published document
   transaction
     .createIfNotExists(document)
     .patch(document._id, (patch) => patch.set(document));
 
-  // Check if this product has a corresponding draft and if so, update that too.
   if (existingDrafts.includes(draftId)) {
     transaction.patch(draftId, (patch) =>
       patch.set({

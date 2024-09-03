@@ -1,15 +1,15 @@
+import React from "react";
 import { headers } from "next/headers";
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { createClient, PortableTextBlock } from "next-sanity";
+import { render } from "@react-email/components";
 import { z } from "zod";
 
-import { render } from "@react-email/components";
 import { EmailTemplate } from "@repo/email";
 
 import { apiVersion, dataset, projectId } from "~/sanity/env";
-import { resend } from "~/lib/resend";
-import React from "react";
 import { urlForImage } from "~/sanity/lib/image";
+import { resend } from "~/lib/resend";
 
 const secret = process.env.SANITY_WEBHOOK_SECRET!;
 
@@ -23,6 +23,7 @@ const sanity = createClient({
 
 const SanityMarketingPayloadShema = z.object({
   _id: z.string(),
+  _type: z.literal("marketingEmail"),
 });
 
 const MarketingEmailPayloadSchema = z.object({
@@ -98,21 +99,21 @@ const ContacsListPayloadSchema = z.object({
     .array(),
 });
 
-export async function POST(request: Request) {
+export async function handleMarketingEmailPublish(request: Request) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
   const body = await request.json();
 
-  // if (
-  //   !signature ||
-  //   !(await isValidSignature(JSON.stringify(body), signature, secret))
-  // ) {
-  //   return Response.json(
-  //     { status: "failed", message: "Invalid signature" },
-  //     {
-  //       status: 401,
-  //     }
-  //   );
-  // }
+  if (
+    !signature ||
+    !(await isValidSignature(JSON.stringify(body), signature, secret))
+  ) {
+    return Response.json(
+      { status: "failed", message: "Invalid signature" },
+      {
+        status: 401,
+      }
+    );
+  }
 
   const payload = SanityMarketingPayloadShema.parse(body);
 
