@@ -25,27 +25,37 @@ export default defineType({
       name: "title",
       title: "Title",
       type: "string",
+      validation: (rule) =>
+        rule.required().error("Every email must have a title"),
     }),
     defineField({
       name: "author",
       title: "Author",
       type: "reference",
       to: { type: "author" },
+      validation: (rule) =>
+        rule.required().error("Every email must have an author"),
     }),
     defineField({
       name: "subject",
       title: "Subject",
       type: "string",
+      validation: (rule) =>
+        rule.required().error("Every email must have a subject"),
     }),
     defineField({
       name: "preview",
       title: "Preview",
       type: "string",
+      validation: (rule) =>
+        rule.required().error("Every email must have a preview"),
     }),
     defineField({
       ...emailBlockContent,
       name: "body",
       title: "Body",
+      validation: (rule) =>
+        rule.required().error("Every email must have a body"),
     }),
   ],
   preview: {

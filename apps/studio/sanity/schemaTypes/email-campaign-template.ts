@@ -48,9 +48,9 @@ export default defineType({
     }),
   ],
   validation: (rule) =>
-    rule.custom((fields) => {
-      if (!fields) return true;
-      const body = fields.body as PortableTextBlock[];
+    rule.custom((document) => {
+      if (!document) return true;
+      const body = document.body as PortableTextBlock[];
 
       const hasPlaceholder = body.some(
         (block) => block._type === "placeholder"
