@@ -18,9 +18,8 @@ const SanityPayloadSchema = z.object({
 });
 type SanityPayload = z.infer<typeof SanityPayloadSchema>;
 
-export async function handleSanityContactSync(req: Request) {
+export async function handleSanityContactSync(body: any) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
-  const body = await req.json();
 
   if (
     !signature ||

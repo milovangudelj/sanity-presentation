@@ -99,9 +99,8 @@ const ContacsListPayloadSchema = z.object({
     .array(),
 });
 
-export async function handleMarketingEmailPublish(request: Request) {
+export async function handleMarketingEmailPublish(body: any) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
-  const body = await request.json();
 
   if (
     !signature ||

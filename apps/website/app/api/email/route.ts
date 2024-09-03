@@ -14,13 +14,11 @@ type WebhookSource =
 // Analyze headers and the request body and return the source of the request. Can be contact synchronisation from either Sanity or Resend, or a marketing email publish event from Sanity.
 // If it's coming from Sanity it has a header "request-source" with the value "sanity". If it's coming from Resend that header is not set.
 // If it's a marketing email publish event from Sanity it contains a "_type" field in the request body with the value "marketingEmail", for contact sync that field is equal to "contact".
-async function getRequestSource(req: Request): Promise<WebhookSource> {
+async function getRequestSource(body: any): Promise<WebhookSource> {
   const headersList = headers();
   const source = headersList.get("request-source");
 
   if (!source) return "resend.contact-sync";
-
-  const body = await req.json();
 
   if (body._type === "contact") return "sanity.contact-sync";
 
@@ -36,9 +34,10 @@ const handlers: {
 };
 
 export async function POST(req: Request) {
-  const source = await getRequestSource(req);
+  const body = await req.json();
+  const source = await getRequestSource(body);
 
   const handler = handlers[source];
 
-  return handler(req);
+  return handler(body);
 }

@@ -23,8 +23,7 @@ const ResendPayloadSchema = z.object({
 });
 type ResendPayload = z.infer<typeof ResendPayloadSchema>;
 
-export async function handleResendContactSync(req: Request) {
-  const body = await req.json();
+export async function handleResendContactSync(body: any) {
   const payload = ResendPayloadSchema.parse(body);
 
   try {
