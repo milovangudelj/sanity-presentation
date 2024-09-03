@@ -2,6 +2,7 @@ import { User } from "@phosphor-icons/react";
 import { defineField, defineType, PreviewProps } from "sanity";
 import { Badge, Box, Flex } from "@sanity/ui";
 import { formatDistance } from "date-fns";
+import crypto from "crypto";
 
 export default defineType({
   name: "contact",
@@ -86,9 +87,17 @@ export default defineType({
 
       const subtitle = `${firstName} ${surname}`;
 
+      const hash = crypto
+        .createHash("sha256")
+        .update(email.trim().toLowerCase())
+        .digest("hex");
+
+      const media = `https://www.gravatar.com/avatar/${hash}?d=https%3A%2F%2Fresend.com%2Fstatic%2Fdefault-avatar.png&s=66`;
+
       return {
         title: email,
         subtitle,
+        media,
       };
     },
   },
