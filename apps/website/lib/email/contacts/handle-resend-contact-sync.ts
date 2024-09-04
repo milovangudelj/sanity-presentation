@@ -25,7 +25,7 @@ const ResendPayloadSchema = z.object({
 });
 type ResendPayload = z.infer<typeof ResendPayloadSchema>;
 
-export async function handleResendContactSync(body: any) {
+export async function handleResendContactSync(body: string) {
   const headersList = headers();
   const svix_id = headersList.get("svix-id") ?? "";
   const svix_timestamp = headersList.get("svix-timestamp") ?? "";
@@ -34,7 +34,7 @@ export async function handleResendContactSync(body: any) {
   const svix = new Webhook(process.env.RESEND_WEBHOOK_SECRET!);
 
   try {
-    svix.verify(JSON.stringify(body), {
+    svix.verify(body, {
       "svix-id": svix_id,
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
@@ -49,7 +49,7 @@ export async function handleResendContactSync(body: any) {
     );
   }
 
-  const payload = ResendPayloadSchema.parse(body);
+  const payload = ResendPayloadSchema.parse(JSON.parse(body));
 
   try {
     const transaction = sanity.transaction();

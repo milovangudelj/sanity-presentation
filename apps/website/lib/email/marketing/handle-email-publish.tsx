@@ -99,13 +99,10 @@ const ContacsListPayloadSchema = z.object({
     .array(),
 });
 
-export async function handleMarketingEmailPublish(body: any) {
+export async function handleMarketingEmailPublish(body: string) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
 
-  if (
-    !signature ||
-    !(await isValidSignature(JSON.stringify(body), signature, secret))
-  ) {
+  if (!signature || !(await isValidSignature(body, signature, secret))) {
     return Response.json(
       { status: "failed", message: "Invalid signature" },
       {
@@ -114,7 +111,7 @@ export async function handleMarketingEmailPublish(body: any) {
     );
   }
 
-  const payload = SanityMarketingPayloadShema.parse(body);
+  const payload = SanityMarketingPayloadShema.parse(JSON.parse(body));
 
   const marketingEmail = MarketingEmailPayloadSchema.parse(
     await sanity.fetch(`*[_id == $id][0]`, {

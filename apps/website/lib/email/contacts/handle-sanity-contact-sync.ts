@@ -18,13 +18,10 @@ const SanityPayloadSchema = z.object({
 });
 type SanityPayload = z.infer<typeof SanityPayloadSchema>;
 
-export async function handleSanityContactSync(body: any) {
+export async function handleSanityContactSync(body: string) {
   const signature = headers().get(SIGNATURE_HEADER_NAME);
 
-  if (
-    !signature ||
-    !(await isValidSignature(JSON.stringify(body), signature, secret))
-  ) {
+  if (!signature || !(await isValidSignature(body, signature, secret))) {
     return Response.json(
       { status: "failed", message: "Invalid signature" },
       {
@@ -33,7 +30,7 @@ export async function handleSanityContactSync(body: any) {
     );
   }
 
-  const payload = SanityPayloadSchema.parse(body);
+  const payload = SanityPayloadSchema.parse(JSON.parse(body));
 
   const operation = getOperation();
 
