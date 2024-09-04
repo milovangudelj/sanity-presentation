@@ -26,6 +26,7 @@
     "resend": "^4.0.0",
     "sanity": "^3.56.0",
     "server-only": "^0.0.1",
+    "svix": "^1.32.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

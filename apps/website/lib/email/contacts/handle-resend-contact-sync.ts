@@ -1,3 +1,4 @@
+import { Webhook } from "svix";
 import { z } from "zod";
 import { Transaction } from "next-sanity";
 
@@ -6,6 +7,7 @@ import {
   getSanityContact,
   sanity,
 } from "~/lib/email/contacts/utils";
+import { headers } from "next/headers";
 
 const ResendPayloadSchema = z.object({
   created_at: z.string().datetime({ precision: 3 }),
@@ -24,6 +26,29 @@ const ResendPayloadSchema = z.object({
 type ResendPayload = z.infer<typeof ResendPayloadSchema>;
 
 export async function handleResendContactSync(body: any) {
+  const headersList = headers();
+  const svix_id = headersList.get("svix-id") ?? "";
+  const svix_timestamp = headersList.get("svix-timestamp") ?? "";
+  const svix_signature = headersList.get("svix-signature") ?? "";
+
+  const svix = new Webhook(process.env.RESEND_WEBHOOK_SECRET!);
+
+  try {
+    svix.verify(JSON.stringify(body), {
+      "svix-id": svix_id,
+      "svix-timestamp": svix_timestamp,
+      "svix-signature": svix_signature,
+    });
+  } catch (err) {
+    return Response.json(
+      {
+        status: "failed",
+        message: "Invalid signature",
+      },
+      { status: 401 }
+    );
+  }
+
   const payload = ResendPayloadSchema.parse(body);
 
   try {
@@ -43,7 +68,12 @@ export async function handleResendContactSync(body: any) {
 
     await transaction.commit();
   } catch (err) {
-    console.error("Transaction failed: ", (err as Error).message);
+    return Response.json(
+      { status: "failed", message: (err as Error).message },
+      {
+        status: 500,
+      }
+    );
   }
 
   return Response.json(
